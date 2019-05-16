@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Product</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" th:href="@{/images/core-img/favicon.ico}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/themify/themify-icons.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/elegant-font/html-css/style.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/animate/animate.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/css-hamburgers/hamburgers.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/animsition/css/animsition.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/select2/select2.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/noui/nouislider.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<div th:replace="fragments/header :: header_info (vm=${vm.getLayoutHeaderVM()})"></div>
+	<!--</header>-->
+
+	<!-- Title Page -->
+	<section>
+		<img th:src="@{/images/banner/product-new-arrival.jpg}" alt="" style="width: 100%; background-size: cover;">
+	</section>
+
+	<!-- Content page -->
+	<section class="bgwhite p-t-55 p-b-65">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+					<div class="leftbar p-r-20 p-r-0-sm">
+						<!--  -->
+						<h4 class="m-text14 p-b-7">
+							Categories
+						</h4>
+
+						<ul class="p-b-54 p-t-10">
+							<li class="p-t-4">
+								<a th:href="${'/product/?categoryId='+category.getId()}" class="s-text13" th:each="category : ${vm.getCategoryVMList()}">
+									<p th:text="${category.getName()}"></p>
+								</a>
+							</li>
+						</ul>
+
+						<!--  -->
+						<h4 class="m-text14 p-b-20">
+							Filters
+						</h4>
+
+						<div class="filter-price p-t-20 p-b-50">
+							<div class="m-text15 p-b-17">
+								Price
+							</div>
+
+							<div class="wra-filter-bar">
+								<div id="filter-bar"></div>
+							</div>
+
+							<div class="flex-sb-m flex-w p-t-16">
+								<div class="w-size11">
+									<!-- Button -->
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4 btn-filter-bar">
+										Filter
+									</button>
+								</div>
+
+								<div class="s-text3 p-t-10 p-b-10">
+									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
+								</div>
+							</div>
+						</div>
+
+						<form class="form-inline my-2 my-lg-0 form-search" th:action="@{/product}" th:object="${productname}" method="get">
+							<input class="form-control mr-sm-2 " th:field="*{name}" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
+
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+					<!--  -->
+					<div class="flex-sb-m flex-w p-b-35">
+						<div class="flex-w">
+							<div class="dropdown">
+								<button class="btn dropdown-toggle filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="fa fa-filter" aria-hidden="true"></i>
+									<span>Filter</span>
+								</button>
+								<div class="dropdown-menu filter-item" aria-labelledby="dropdownMenuButton">
+									<!--<a class="dropdown-item" th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))-->
+                                                                                       <!--+(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))-->
+                                                                                       <!--+(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))-->
+                                                                                       <!--+('&sortByDate=DESC')-->
+                                                                                       <!--+(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Newest Arrivals</a>-->
+									<a class="dropdown-item" th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))
+                                                                                       +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +('&sortByPrice=ASC')
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Price: Low to High</a>
+									<a class="dropdown-item" th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))
+                                                                                       +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +('&sortByPrice=DESC')
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Price: High to Low</a>
+								</div>
+							</div>
+						</div>
+
+						<span class="s-text8 p-t-5 p-b-5" th:text="'Show ' + ${vm.getProductVMList().size()} + ' of ' + ${vm.getProductTotal()} + ' results'">
+
+						</span>
+					</div>
+
+					<!-- Product -->
+					<div class="row" >
+						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50" id="products" th:each="product : ${vm.getProductVMList()}">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+									<a th:href="${'/product/'+product.getId()}">
+										<img th:src="${product.getMainImage()}" class="card-img-top">
+									</a>
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4" data-toggle="tooltip" data-placement="bottom" title="Add to wishlist">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4 ">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 add-to-cart" th:attr="data-product=${product.getId()}">
+												Add to Cart
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="block2-txt p-t-20">
+									<a th:href="${'/product/'+product.getId()}" class="block2-name dis-block s-text3 p-b-5" th:text="${product.getName()}">
+
+									</a>
+
+									<span class="block2-price m-text6 p-r-5 product-price" th:attr="data-price=${product.getPrice()}" th:text="'$ ' + ${product.getPrice()}">
+
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Pagination -->
+					<nav style="margin-top: 50px" aria-label="..." th:if="${vm.getProductVMList().size()>0}">
+						<ul class="pagination">
+							<th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+								<li class="page-item active" th:if="${page.number == i}" aria-current="page">
+									<a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>
+								</li>
+								<li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"
+																						  th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))
+                                                                                       +('&page='+i)
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}"></a></li>
+							</th:block>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<div th:replace="fragments/footer :: footer_info"></div>
+	<!--</footer>-->
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+
+	<script th:inline="javascript">
+
+        var vm = [[${vm}]];
+
+	</script>
+
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/animsition/js/animsition.min.js}"></script>
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/bootstrap/js/popper.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/select2/select2.min.js}"></script>
+	<script type="text/javascript">
+		$(".selection-1").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect2')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/daterangepicker/moment.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/slick/slick.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/slick-custom.js}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/sweetalert/sweetalert.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+	<script type="text/javascript">
+		// $('.block2-btn-addcart').each(function(){
+		// 	var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+		// 	$(this).on('click', function(){
+		// 		swal(nameProduct, "is added to cart !", "success");
+		// 	});
+		// });
+		//
+		// $('.block2-btn-addwishlist').each(function(){
+		// 	var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+		// 	$(this).on('click', function(){
+		// 		swal(nameProduct, "is added to wishlist !", "success");
+		// 	});
+		// });
+        $(document).ready(function() {
+
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+            var delete_cookie = function(name) {
+                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            };
+
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                }
+                return null;
+            }
+
+            function checkCookie() {
+                var user = getCookie("username");
+                if (user != "") {
+                    alert("Welcome again " + user);
+                } else {
+                    user = prompt("Please enter your name:", "");
+                    if (user != "" && user != null) {
+                        setCookie("username", user, 365);
+                    }
+                }
+            }
+
+
+            $(".add-to-cart").on("click", function () {
+                var dataCart = {};
+                var pdInfo = $(this).data("product");
+                dataCart.amount = 1;
+                dataCart.productId = pdInfo;
+                dataCart.guid = getCookie("guid");
+
+                NProgress.start();
+
+                var linkPost = "/api/cart-product/add";
+
+                axios.post(linkPost, dataCart).then(function(res){
+                    NProgress.done();
+                    if(res.data.success) {
+                        swal(
+                            'Success',
+                            res.data.message,
+                            'success'
+                        ).then(function() {
+                            location.reload();
+                        });
+                    } else {
+                        swal(
+                            'Fail',
+                            res.data.message,
+                            'error'
+                        );
+                    }
+                }, function(err){
+                    NProgress.done();
+                    swal(
+                        'Error',
+                        'Fail',
+                        'error'
+                    );
+                });
+            });
+
+        });
+	</script>
+
+<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/vendors/noui/nouislider.min.js}"></script>
+	<script type="text/javascript">
+		/*[ No ui ]
+	    ===========================================================*/
+        console.log(vm);
+
+	    var filterBar = document.getElementById('filter-bar');
+		var maxPrice = vm.maxPriceProduct + 1;
+
+	    noUiSlider.create(filterBar, {
+	        start: [ 0, maxPrice ],
+	        connect: true,
+	        range: {
+	            'min': 0,
+	            'max': maxPrice
+	        }
+	    });
+
+	    var skipValues = [
+	    document.getElementById('value-lower'),
+	    document.getElementById('value-upper')
+	    ];
+
+	    filterBar.noUiSlider.on('update', function( values, handle ) {
+	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
+
+	    });
+		//filter
+        function showProducts(minPrice, maxPrice) {
+            $("#products").hide().filter(function() {
+                var price = parseFloat($('.product-price').data("price"));
+                return price >= minPrice && price <= maxPrice;
+            }).show();
+        }
+        $(".btn-filter-bar").on("click", function () {
+            alert(document.getElementById('value-lower').innerHTML +" "+ document.getElementById('value-upper').innerHTML);
+			showProducts(parseFloat(document.getElementById('value-lower').innerHTML), parseFloat(document.getElementById('value-upper').innerHTML));
+        });
+
+
+
+        //end filter
+	</script>
+<!--===============================================================================================-->
+	<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

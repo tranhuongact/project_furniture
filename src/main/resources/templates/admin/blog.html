@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/admin/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/vendors/admin/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- DataTable -->
+    <link th:href="@{/vendors/datatable/dataTables.bootstrap4.css}" rel="stylesheet">
+    <link th:href="@{/build/css/custom.css}" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <!--<div class="profile clearfix">-->
+                    <!--<div class="profile_pic">-->
+                        <!--<img th:src="@{/images/admin/img.jpg}" alt="..." class="img-circle profile_img">-->
+                    <!--</div>-->
+                    <!--<div class="profile_info">-->
+                        <!--<span>Welcome,</span>-->
+                        <!--<h2>John Doe</h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>General</h3>
+                        <ul class="nav side-menu">
+                            <li>
+                                <a th:href="@{/admin}"><i class="fa fa-home"></i> Home </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/category}"><i class="fa fa-list-ul"></i> Category </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/brand}"><i class="fa fa-tags"></i> Brand </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/product}"><i class="fa fa-gift"></i> Product </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/product-image}"><i class="fa fa-file-picture-o"></i> Product Image </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/blog}"><i class="fa fa-newspaper-o"></i> Blog </a>
+                            </li>
+                            <!--<li>-->
+                                <!--<a th:href="@{/admin/order}"><i class="fa fa-list-alt"></i> Order </a>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div th:replace="fragments/header_admin :: header_admin_info (vm=${vm.getLayoutHeaderAdminVM()})">
+
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="content">
+                <div class="page-header">
+                    <h1>Blog Management</h1>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="new-blog" data-toggle="modal" style="margin-bottom: 20px" data-target="#exampleModalLong">
+                    Add new blog
+                </button>
+
+                <div class="col-lg-12 grid-margin" style="color: black; font-size: 14px;">
+                    <table id="blogDataTable" class="table table-striped table-bordered" style="width:100%;">
+                        <thead>
+                        <tr>
+                            <th scope="col">Index</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Short Desc</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr scope="row" th:each="blog : ${vm.getBlogVMList()}">
+                            <td th:text="${blog.getId()}"  class="text-center"></td>
+                            <td th:text="${blog.getTitle()}"></td>
+                            <td th:text="${blog.getUserName()}"></td>
+                            <td th:text="${blog.getShortDesc()}"></td>
+                            <td th:text="${blog.getContent()}"></td>
+                            <td th:text="${blog.getCreatedDate()}"></td>
+                            <td class="text-center">
+                                <i class="fa fa-edit tooltip-test edit-blog" th:attr="data-blog = ${blog.getId()}" data-toggle="modal" title="Edit blog" data-target="#exampleModalLong" style="cursor: pointer"></i>
+                                <i class="fa fa-trash-o delete-blog" th:attr="data-blog = ${blog.getId()}" data-toggle="modal" title="Delete blog" aria-hidden="true" style="cursor: pointer"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="modal-title" id="exampleModalLongTitle" style="font-size: 20px;">Add new/update blog</span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: 0">
+                                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="myModal">
+                            <img style="max-width: 200px; height: auto; display: block; margin: 0 auto;" th:src="@{/images/product-img/default.jpg}" class="blog-main-image">
+
+                            <div>
+                                <input type='file' id="change-blog-image" style="margin: 10px auto"/>
+                            </div>
+
+                            <div class="form-group margin-bottom-15">
+                                <label>Title:</label>
+                                <input type="text" class="form-control" id="input-title">
+                                <span id="slug" style="display: none"></span>
+                            </div>
+
+                            <div class="form-group margin-bottom-15">
+                                <label>Username:</label>
+                                <select class="form-control" id="input-username">
+                                    <option th:each="user : ${vm.getUserVMList()}" th:value="${user.getId()}" th:text="${user.getName()}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group margin-bottom-15">
+                                <label>Short desc:</label>
+                                <textarea type="text" class="form-control" id="input-short-desc"></textarea>
+                            </div>
+
+                            <div class="form-group margin-bottom-15">
+                                <label>Content:</label>
+                                <textarea type="text" class="form-control" id="input-content"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-save-blog">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+
+        <!-- footer content -->
+        <footer th:replace="fragments/footer_admin :: footer_admin_info"></footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script th:src="@{/vendors/admin/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/admin/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/admin/nprogress/nprogress.js}"></script>
+
+<script th:src="@{/vendors/js/popper.min.js}"></script>
+<script th:src="@{/vendors/js/axios.min.js}"></script>
+<script th:src="@{/vendors/js/sweetalert2.all.min.js}"></script>
+<!--DataTable-->
+<script th:src="@{/vendors/datatable/jquery.dataTables.js}"></script>
+<script th:src="@{/vendors/datatable/dataTables.bootstrap4.js}"></script>
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.min.js}"></script>
+<script th:src="@{/js/admin/admin-blog.js}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#blogDataTable').DataTable();
+    } );
+</script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" th:href="@{/images/core-img/favicon.ico}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/themify/themify-icons.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/elegant-font/html-css/style.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animate/animate.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css-hamburgers/hamburgers.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animsition/css/animsition.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/select2/select2.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/daterangepicker/daterangepicker.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/lightbox2/css/lightbox.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+<!-- Header -->
+<div th:replace="fragments/header :: header_info (vm=${vm.getLayoutHeaderVM()})"></div>
+<!--</header>-->
+
+<div class="spr-banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <th:block th:each="banner,iter : ${vm.getListBanners()}">
+                <li data-target="#carouselExampleIndicators" th:if="${iter.index == 0}" th:attr="data-slide-to=${iter.index}" class="active"></li>
+                <li data-target="#carouselExampleIndicators" th:unless="${iter.index == 0}" th:attr="data-slide-to=${iter.index}"></li>
+            </th:block>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <th:block th:each="banner,iter : ${vm.getListBanners()}">
+                <div class="carousel-item active" th:if="${iter.index == 0}">
+                    <img th:src="${banner.getImageUrl()}" th:alt="${banner.getAltText()}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 th:text="${banner.getAltText()}"></h5>
+
+                    </div>
+                </div>
+                <div class="carousel-item" th:unless="${iter.index == 0}">
+                    <img th:src="${banner.getImageUrl()}" th:alt="${banner.getAltText()}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 th:text="${banner.getAltText()}"></h5>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- Slide1 -->
+
+<!-- Banner -->
+<section class="banner bgwhite p-t-50 p-b-50">
+    <div class="container">
+        <div class="row">
+
+            <!--test-->
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto" >
+
+                <!-- block1 -->
+
+                <div class="block1 hov-img-zoom pos-relative m-b-30" >
+                    <img th:src="${vm.getCategoryVMList().get(3).getMainImage()}" alt="IMG-BENNER">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a th:href="${'/product/?categoryId='+vm.getCategoryVMList().get(3).getId()}" class="flex-c-m size2  bg3 hov1 trans-0-4" >
+                            <span th:text="${vm.getCategoryVMList().get(3).getName()}" style="font-size: 12 !important;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto" >
+
+                <!-- block1 -->
+
+                <div class="block1 hov-img-zoom pos-relative m-b-30" >
+                    <img th:src="${vm.getCategoryVMList().get(4).getMainImage()}" alt="IMG-BENNER">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a th:href="${'/product/?categoryId='+vm.getCategoryVMList().get(4).getId()}" class="flex-c-m size2  bg3 hov1 trans-0-4" >
+                            <span th:text="${vm.getCategoryVMList().get(4).getName()}" style="font-size: 12 !important;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto" >
+
+                <!-- block1 -->
+
+                <div class="block1 hov-img-zoom pos-relative m-b-30" >
+                    <img th:src="${vm.getCategoryVMList().get(5).getMainImage()}" alt="IMG-BENNER">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a th:href="${'/product/?categoryId='+vm.getCategoryVMList().get(5).getId()}" class="flex-c-m size2  bg3 hov1 trans-0-4" >
+                            <span th:text="${vm.getCategoryVMList().get(5).getName()}" style="font-size: 12 !important;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto" >
+
+                <!-- block1 -->
+
+                <div class="block1 hov-img-zoom pos-relative m-b-30" >
+                    <img th:src="${vm.getCategoryVMList().get(8).getMainImage()}" alt="IMG-BENNER">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a th:href="${'/product/?categoryId='+vm.getCategoryVMList().get(8).getId()}" class="flex-c-m size2  bg3 hov1 trans-0-4" >
+                            <span th:text="${vm.getCategoryVMList().get(8).getName()}" style="font-size: 12 !important;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto" >
+
+                <!-- block1 -->
+
+                <div class="block1 hov-img-zoom pos-relative m-b-30" >
+                    <img th:src="${vm.getCategoryVMList().get(6).getMainImage()}" alt="IMG-BENNER">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a th:href="${'/product/?categoryId='+vm.getCategoryVMList().get(6).getId()}" class="flex-c-m size2  bg3 hov1 trans-0-4" >
+                            <span th:text="${vm.getCategoryVMList().get(6).getName()}" style="font-size: 12 !important;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto" >
+
+                <!-- block1 -->
+
+                <div class="block1 hov-img-zoom pos-relative m-b-30" >
+                    <img th:src="${vm.getCategoryVMList().get(7).getMainImage()}" alt="IMG-BENNER">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a th:href="${'/product/?categoryId='+vm.getCategoryVMList().get(7).getId()}" class="flex-c-m size2  bg3 hov1 trans-0-4" >
+                            <span th:text="${vm.getCategoryVMList().get(7).getName()}" style="font-size: 12 !important;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!--close test-->
+
+        </div>
+    </div>
+</section>
+
+<!-- New Product -->
+<section class="newproduct bgwhite p-t-50 p-b-50">
+    <div class="container">
+        <div class="sec-title p-b-60">
+            <h3 class="m-text5 t-center">
+                Featured Products
+            </h3>
+        </div>
+
+        <!-- Slide2 -->
+        <div class="wrap-slick2">
+            <div class="slick2">
+
+                <th:block th:each="item : ${vm.getProductVMList()}">
+                    <div class="item-slick2 p-l-15 p-r-15">
+                        <!-- Block2 -->
+                        <div class="block2">
+                            <div class="block2-img wrap-pic-w of-hidden pos-relative ">
+                                <img th:src="${item.getMainImage()}" alt="IMG-PRODUCT">
+
+                                <div class="block2-overlay trans-0-4">
+
+                                </div>
+                            </div>
+
+                            <div class="block2-txt p-t-20">
+                                <a th:href="'/product/'+${item.getId()}" class="block2-name dis-block s-text3 p-b-5" th:text="${item.getName()}">
+
+                                </a>
+
+                                <!--<span class="block2-price m-text17 p-r-5" th:text="${item.getPrice()}+' đ'"></span>-->
+                                <span class="m-text17" th:text="${item.getPrice()}+' đ'">
+
+				            </span>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Banner2 -->
+
+
+<!-- Blog -->
+<!--<section class="blog bgwhite p-t-50 p-b-50">-->
+    <!--<div class="container">-->
+        <!--<div class="sec-title p-b-52">-->
+            <!--<h3 class="m-text5 t-center">-->
+                <!--Our Blog-->
+            <!--</h3>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+            <!--<div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto" th:each="blog : ${vm.getBlogVMList()}">-->
+                <!--&lt;!&ndash; Block3 &ndash;&gt;-->
+                <!--<div class="block3">-->
+                    <!--<a th:href="${'/blog/detail/' + blog.getId()}" class="block3-img dis-block hov-img-zoom">-->
+                        <!--<img th:src="${blog.getMainImage()}" alt="IMG-BLOG" style="height: 400px; background-size: cover">-->
+                    <!--</a>-->
+
+                    <!--<div class="block3-txt p-t-14">-->
+                        <!--<h4 class="p-b-7">-->
+                            <!--<a th:href="${'/blog/detail/' + blog.getId()}" class="m-text11" th:text="${blog.getTitle()}">-->
+
+                            <!--</a>-->
+                        <!--</h4>-->
+
+                        <!--&lt;!&ndash;<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="s-text6">on</span> <span class="s-text7">July 22, 2017</span>&ndash;&gt;-->
+
+                        <!--<p class="s-text8 p-t-16" th:text="${blog.getShortDesc()}">-->
+
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+
+<!-- Shipping -->
+<section class="shipping bgwhite p-t-50 p-b-50">
+    <div class="flex-w p-l-15 p-r-15">
+        <div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+            <h4 class="m-text12 t-center">
+                Free Delivery Worldwide
+            </h4>
+
+            <a href="#" class="s-text11 t-center">
+                Click here for more info
+            </a>
+        </div>
+
+        <div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 bo2 respon2">
+            <h4 class="m-text12 t-center">
+                30 Days Return
+            </h4>
+
+            <span class="s-text11 t-center">
+					Simply return it within 30 days for an exchange.
+				</span>
+        </div>
+
+        <div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+            <h4 class="m-text12 t-center">
+                Store Opening
+            </h4>
+
+            <span class="s-text11 t-center">
+					Shop open from Monday to Sunday
+				</span>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer_info"></div>
+<!--</footer>-->
+
+<!-- Back to top -->
+<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+</div>
+
+<!-- Container Selection1 -->
+<div id="dropDownSelect1"></div>
+
+
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/popper.js}"></script>
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/select2/select2.min.js}"></script>
+
+<script type="text/javascript">
+    $(".selection-1").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+</script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/slick/slick.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/slick-custom.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/lightbox2/js/lightbox.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/sweetalert/sweetalert.min.js}"></script>
+<script type="text/javascript">
+    $('.block2-btn-addcart').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+
+    $('.block2-btn-addwishlist').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to wishlist !", "success");
+        });
+    });
+</script>
+
+<!--===============================================================================================-->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

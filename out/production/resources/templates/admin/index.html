@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
+
+<title>Gentelella Alela! | </title>
+
+<!-- Bootstrap -->
+<link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.css}" rel="stylesheet">
+<!-- Font Awesome -->
+<link th:href="@{/vendors/admin/font-awesome/css/font-awesome.css}" rel="stylesheet">
+<!-- NProgress -->
+<link th:href="@{/vendors/admin/nprogress/nprogress.css}" rel="stylesheet">
+<!-- iCheck -->
+<link th:href="@{/vendors/admin/iCheck/skins/flat/green.css}" rel="stylesheet">
+
+<!-- bootstrap-progressbar -->
+<link th:href="@{/vendors/admin/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
+<!-- JQVMap -->
+<link th:href="@{/vendors/admin/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
+<!-- bootstrap-daterangepicker -->
+<link th:href="@{/vendors/admin/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link th:href="@{/build/css/custom.css}" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <!--<div class="profile clearfix">-->
+            <!--<div class="profile_pic">-->
+              <!--<img th:src="@{/images/admin/img.jpg}" alt="..." class="img-circle profile_img">-->
+            <!--</div>-->
+            <!--<div class="profile_info">-->
+              <!--<span>Welcome,</span>-->
+              <!--<h2>John Doe</h2>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a th:href="@{/admin}"><i class="fa fa-home"></i> Home </a>
+                </li>
+                <li>
+                  <a th:href="@{/admin/category}"><i class="fa fa-list-ul"></i> Category </a>
+                </li>
+                <li>
+                  <a th:href="@{/admin/brand}"><i class="fa fa-tags"></i> Brand </a>
+                </li>
+                <li>
+                  <a th:href="@{/admin/product}"><i class="fa fa-gift"></i> Product </a>
+                </li>
+                <li>
+                  <a th:href="@{/admin/product-image}"><i class="fa fa-file-picture-o"></i> Product Image </a>
+                </li>
+                <li>
+                  <a th:href="@{/admin/blog}"><i class="fa fa-newspaper-o"></i> Blog </a>
+                </li>
+                <!--<li>-->
+                  <!--<a th:href="@{/admin/order}"><i class="fa fa-list-alt"></i> Order </a>-->
+                <!--</li>-->
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div th:replace="fragments/header_admin :: header_admin_info (vm=${vm.getLayoutHeaderAdminVM()})">
+
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h1>Chart</h1>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <canvas id="chart-count-product-by-category-type-bar" style="height: 500px;"></canvas>
+                    <canvas id="chart-count-product-by-category-type-pie" style="height: 500px;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <canvas id="chart-sum-product-order-by-category-type-bar" style="height: 500px;"></canvas>
+                    <canvas id="chart-sum-product-order-by-category-type-pie" style="height: 500px;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <footer class="footer" th:replace="fragments/footer_admin :: footer_admin_info"></footer>
+
+        </div>
+
+      </div>
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer th:replace="fragments/footer_admin :: footer_admin_info"></footer>
+      <!-- /footer content -->
+
+    </div>
+  </div>
+
+<!-- jQuery -->
+<script th:src="@{/vendors/admin/jquery/dist/jquery.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/admin/bootstrap/dist/js/bootstrap.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/vendors/admin/fastclick/lib/fastclick.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/admin/nprogress/nprogress.js}"></script>
+<!-- Chart.js -->
+<script th:src="@{/vendors/admin/Chart.js/dist/Chart.js}"></script>
+<!-- gauge.js -->
+<script th:src="@{/vendors/admin/gauge.js/dist/gauge.min.js}"></script>
+<!-- bootstrap-progressbar -->
+<script th:src="@{/vendors/admin/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+<!-- iCheck -->
+<script th:src="@{/vendors/admin/iCheck/icheck.min.js}"></script>
+<!-- Skycons -->
+<script th:src="@{/vendors/admin/skycons/skycons.js}"></script>
+<!-- Flot -->
+<script th:src="@{/vendors/admin/Flot/jquery.flot.js}"></script>
+<script th:src="@{/vendors/admin/Flot/jquery.flot.pie.js}"></script>
+<script th:src="@{/vendors/admin/Flot/jquery.flot.time.js}"></script>
+<script th:src="@{/vendors/admin/Flot/jquery.flot.stack.js}"></script>
+<script th:src="@{/vendors/admin/Flot/jquery.flot.resize.js}"></script>
+<!-- Flot plugins -->
+<script th:src="@{/vendors/admin/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
+<script th:src="@{/vendors/admin/flot-spline/js/jquery.flot.spline.min.js}"></script>
+<script th:src="@{/vendors/admin/flot.curvedlines/curvedLines.js}"></script>
+<!-- DateJS -->
+<script th:src="@{/vendors/admin/DateJS/build/date.js}"></script>
+<!-- bootstrap-daterangepicker -->
+<script th:src="@{/vendors/admin/moment/min/moment.min.js}"></script>
+<script th:src="@{/vendors/admin/bootstrap-daterangepicker/daterangepicker.js}"></script>
+
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.js}"></script>
+<script th:src="@{/js/admin/script.js}"></script>
+
+<script th:inline="javascript">
+
+    var vm = [[${vm}]]; /* có vm lấy từ BE truyền xuống => truyền vm từ html sang js để xử lý */
+
+</script>
+</body>
+</html>

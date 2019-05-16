@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<header class="header1" th:fragment="header_info (vm)">
+    <!-- Header desktop -->
+    <div class="container-menu-header">
+        <div class="topbar">
+            <div class="topbar-social">
+                <a href="#" class="topbar-social-item fa fa-facebook"></a>
+                <a href="#" class="topbar-social-item fa fa-instagram"></a>
+                <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+                <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+            </div>
+
+            <span class="topbar-child1">
+					Free shipping for standard order over $100
+				</span>
+
+            <div class="topbar-child2">
+					<span class="topbar-email">
+						fashe@example.com
+					</span>
+
+                <span class="topbar-phone-number">
+						(+1) 96 716 6879
+					</span>
+
+            </div>
+        </div>
+
+        <div class="wrap_header">
+            <!-- Logo -->
+            <a th:href="@{/}" class="logo">
+                <img th:src="@{/images/core-img/logo.png}" alt="IMG-LOGO">
+            </a>
+
+            <!-- Menu -->
+            <div class="wrap_menu">
+                <nav class="menu">
+                    <ul class="main_menu">
+                        <th:block  th:each="item : ${vm.getHeaderMenuVMArrayList()}">
+                            <li>
+                                <a th:href="${item.getLink()}" th:text="${item.getName()}"></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header Icon -->
+            <div class="header-icons">
+                <div class="header-wrapicon1 mr-1">
+                    <div class="container m-0">
+                        <div class="d-flex justify-content-center">
+                            <form class="form-inline my-2 my-lg-0" th:action="@{/product}" th:object="${productname}" method="get">
+                            <div class="searchbar">
+                                <input class="search_input" type="search" name="" th:field="*{name}" >
+                                <!--<a th:href="@{/product}" class="search_icon"><i class="fa fa-search"></i></a>-->
+                                <button class="search_icon"><i class="fa fa-search"></i></button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-wrapicon1 mr-4">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+                        <i class="fa fa-user-circle-o header-icon1 js-show-header-dropdown" aria-hidden="true" style="font-size: 27px;"></i>
+
+                        <div sec:authorize="isAnonymous()">
+                            <div class="header-cart header-dropdown">
+                                <ul class="header-cart-wrapitem">
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
+                                    </li>
+                                    <hr>
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/login}">Login</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div sec:authorize="isAuthenticated()">
+                            <div class="header-cart header-dropdown">
+                                <ul class="header-cart-wrapitem">
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/user/detail}">User Detail</a>
+                                    </li>
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
+                                    </li>
+                                    <hr>
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <span th:inline="text">
+                                Chào [[${#httpServletRequest.remoteUser}]]!
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div th:replace="fragments/mini_cart :: mini_cart_info (vm=${vm.getCartVM()})"></div>
+                <!--<div class="header-wrapicon2">-->
+                    <!--<i class="fa fa-shopping-bag header-icon1 js-show-header-dropdown" aria-hidden="true"></i>-->
+                    <!--<span class="header-icons-noti">0</span>-->
+
+                    <!--&lt;!&ndash; Header cart noti &ndash;&gt;-->
+                    <!--<div class="header-cart header-dropdown">-->
+                        <!--<ul class="header-cart-wrapitem">-->
+                            <!--<th:block th:each="cartProduct : ${vm.getCartProductVMS()}">-->
+                            <!--<li class="header-cart-item">-->
+                                <!--<div class="header-cart-item-img">-->
+                                    <!--<img th:src="${cartProduct.getMainImage()}" alt="IMG">-->
+                                <!--</div>-->
+
+                                <!--<div class="header-cart-item-txt">-->
+                                    <!--<a href="#" class="header-cart-item-name" th:text="${cartProduct.getProductName()}">-->
+
+                                    <!--</a>-->
+
+                                    <!--<span class="header-cart-item-info" th:text="${cartProduct.getPricePerProduct()}+' đ'">-->
+
+										<!--</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                            <!--</th:block>-->
+                            <!--&lt;!&ndash;<li class="header-cart-item">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="header-cart-item-img">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<img src="images/item-cart-01.jpg" alt="IMG">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;<div class="header-cart-item-txt">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<a href="#" class="header-cart-item-name">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;White Shirt With Pleat Detail Back&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;<span class="header-cart-item-info">&ndash;&gt;-->
+											<!--&lt;!&ndash;1 x $19.00&ndash;&gt;-->
+										<!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<li class="header-cart-item">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="header-cart-item-img">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<img src="images/item-cart-02.jpg" alt="IMG">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;<div class="header-cart-item-txt">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<a href="#" class="header-cart-item-name">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;Converse All Star Hi Black Canvas&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;<span class="header-cart-item-info">&ndash;&gt;-->
+											<!--&lt;!&ndash;1 x $39.00&ndash;&gt;-->
+										<!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<li class="header-cart-item">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="header-cart-item-img">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<img src="images/item-cart-03.jpg" alt="IMG">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;<div class="header-cart-item-txt">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<a href="#" class="header-cart-item-name">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;Nixon Porter Leather Watch In Tan&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;<span class="header-cart-item-info">&ndash;&gt;-->
+											<!--&lt;!&ndash;1 x $17.00&ndash;&gt;-->
+										<!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--</ul>-->
+
+                        <!--<div class="header-cart-total">-->
+                            <!--Total: $75.00-->
+                        <!--</div>-->
+
+                        <!--<div class="header-cart-buttons">-->
+                            <!--<div class="header-cart-wrapbtn">-->
+                                <!--&lt;!&ndash; Button &ndash;&gt;-->
+                                <!--<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
+                                    <!--View Cart-->
+                                <!--</a>-->
+                            <!--</div>-->
+
+                            <!--<div class="header-cart-wrapbtn">-->
+                                <!--&lt;!&ndash; Button &ndash;&gt;-->
+                                <!--<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
+                                    <!--Check Out-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap_header_mobile">
+        <!-- Logo moblie -->
+        <a href="index.html" class="logo-mobile">
+            <img th:src="@{/images/core-img/logo.png}" alt="IMG-LOGO">
+        </a>
+
+        <!-- Button show menu -->
+        <div class="btn-show-menu">
+            <!-- Header Icon mobile -->
+            <div class="header-icons-mobile">
+                <div class="header-wrapicon1 mr-1">
+                    <div class="container m-0">
+                        <div class="d-flex justify-content-center">
+                            <div class="searchbar">
+                                <input class="search_input" type="text" name="" placeholder="Search...">
+                                <a th:href="@{/product}" class="search_icon"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-wrapicon1 mr-4">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/}" th:object="${productname}" method="get">
+                        <i class="fa fa-user-circle-o header-icon1 js-show-header-dropdown" aria-hidden="true" style="font-size: 27px;"></i>
+
+                        <div sec:authorize="isAnonymous()">
+                            <div class="header-cart header-dropdown">
+                                <ul class="header-cart-wrapitem">
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
+                                    </li>
+                                    <hr>
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/login}">Login</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div sec:authorize="isAuthenticated()">
+                            <div class="header-cart header-dropdown">
+                                <ul class="header-cart-wrapitem">
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/user/detail}">User Detail</a>
+                                    </li>
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
+                                    </li>
+                                    <hr>
+                                    <li class="header-cart-item">
+                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <span th:inline="text">
+                                Chào [[${#httpServletRequest.remoteUser}]]!
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div th:replace="fragments/mini_cart :: mini_cart_info (vm=${vm.getCartVM()})"></div>
+                <!--<div class="header-wrapicon2">-->
+                    <!--<i class="fa fa-shopping-bag header-icon1 js-show-header-dropdown" aria-hidden="true"></i>-->
+                    <!--<span class="header-icons-noti">0</span>-->
+
+                    <!--&lt;!&ndash; Header cart noti &ndash;&gt;-->
+                    <!--<div class="header-cart header-dropdown">-->
+                        <!--<ul class="header-cart-wrapitem">-->
+
+                            <!--<li class="header-cart-item">-->
+                                <!--<div class="header-cart-item-img">-->
+                                    <!--<img src="images/item-cart-01.jpg" alt="IMG">-->
+                                <!--</div>-->
+
+                                <!--<div class="header-cart-item-txt">-->
+                                    <!--<a href="#" class="header-cart-item-name" >-->
+                                        <!--Converse All Star Hi Black Canvas-->
+                                    <!--</a>-->
+
+                                    <!--<span class="header-cart-item-info">-->
+											<!--1 x $19.00-->
+										<!--</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+
+                            <!--<li class="header-cart-item">-->
+                                <!--<div class="header-cart-item-img">-->
+                                    <!--<img src="images/item-cart-02.jpg" alt="IMG">-->
+                                <!--</div>-->
+
+                                <!--<div class="header-cart-item-txt">-->
+                                    <!--<a href="#" class="header-cart-item-name">-->
+                                        <!--Converse All Star Hi Black Canvas-->
+                                    <!--</a>-->
+
+                                    <!--<span class="header-cart-item-info">-->
+											<!--1 x $39.00-->
+										<!--</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+
+                            <!--<li class="header-cart-item">-->
+                                <!--<div class="header-cart-item-img">-->
+                                    <!--<img src="images/item-cart-03.jpg" alt="IMG">-->
+                                <!--</div>-->
+
+                                <!--<div class="header-cart-item-txt">-->
+                                    <!--<a href="#" class="header-cart-item-name">-->
+                                        <!--Nixon Porter Leather Watch In Tan-->
+                                    <!--</a>-->
+
+                                    <!--<span class="header-cart-item-info">-->
+											<!--1 x $17.00-->
+										<!--</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+
+                        <!--<div class="header-cart-total" >-->
+                            <!--TOTAL : 100$-->
+                        <!--</div>-->
+
+                        <!--<div class="header-cart-buttons">-->
+                            <!--<div class="header-cart-wrapbtn">-->
+                                <!--&lt;!&ndash; Button &ndash;&gt;-->
+                                <!--<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
+                                    <!--View Cart-->
+                                <!--</a>-->
+                            <!--</div>-->
+
+                            <!--<div class="header-cart-wrapbtn">-->
+                                <!--&lt;!&ndash; Button &ndash;&gt;-->
+                                <!--<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
+                                    <!--Check Out-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div class="wrap-side-menu" >
+        <nav class="side-menu">
+            <ul class="main-menu">
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+						<span class="topbar-child1">
+							Free shipping for standard order over $100
+						</span>
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+							<span class="topbar-email">
+								fashe@example.com
+							</span>
+
+                        <span class="topbar-phone-number">
+								(+1) 96 716 6879
+							</span>
+                    </div>
+                </li>
+
+                <li class="item-topbar-mobile p-l-10">
+                    <div class="topbar-social-mobile">
+                        <a href="#" class="topbar-social-item fa fa-facebook"></a>
+                        <a href="#" class="topbar-social-item fa fa-instagram"></a>
+                        <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+                        <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                        <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+                    </div>
+                </li>
+
+                <th:block  th:each="item : ${vm.getHeaderMenuVMArrayList()}">
+                    <li class="item-menu-mobile">
+                        <a th:href="${item.getLink()}" th:text="${item.getName()}"></a>
+                    </li>
+                </th:block>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

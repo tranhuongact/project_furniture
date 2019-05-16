@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" th:href="@{/images/core-img/favicon.ico}">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/themify/themify-icons.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/elegant-font/html-css/style.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animate/animate.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css-hamburgers/hamburgers.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animsition/css/animsition.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/select2/select2.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/daterangepicker/daterangepicker.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/lightbox2/css/lightbox.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order-history.css}"/>
+
+    <title>Order history</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header_info (vm=${vm.getLayoutHeaderVM()})"></div>
+
+<div class="container">
+    <h2 style="margin-top: 40px; margin-bottom: 30px">Order history</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th colspan="1">Index</th>
+                <th colspan="2">Customer Name</th>
+                <th colspan="2">Email</th>
+                <th colspan="2">Address</th>
+                <th colspan="2">Phone number</th>
+                <th colspan="1">Total price</th>
+                <th colspan="1">Created Date</th>
+                <th colspan="1">Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order,iter : ${vm.getOrderVMS()}">
+                <td colspan="1" th:text="${iter.index+1}" ></td>
+                <td colspan="2" th:text="${order.getCustomerName()}"></td>
+                <td colspan="2" th:text="${order.getEmail()}"></td>
+                <td colspan="2" th:text="${order.getAddress()}"></td>
+                <td colspan="2" th:text="${order.getPhoneNumber()}"></td>
+                <td colspan="1" th:text="${order.getPrice()}"></td>
+                <td colspan="1" th:text="${order.getCreatedDate()}"></td>
+                <td colspan="1">
+                    <a class="btn btn-primary" th:href="@{'/order/history/'+${order.getId()}}" role="button">Detail</a>
+                </td>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer_info"></div>
+
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/popper.js}"></script>
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/js/order-history.js}"></script>
+
+</body>
+</html>

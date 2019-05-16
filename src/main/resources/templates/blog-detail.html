@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Blog Detail</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" th:href="@{/images/core-img/favicon.ico}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/themify/themify-icons.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/elegant-font/html-css/style.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/animate/animate.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/css-hamburgers/hamburgers.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/animsition/css/animsition.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/select2/select2.min.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick.css}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/blog.css}">
+	<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+<!-- Header -->
+<div th:replace="fragments/header :: header_info (vm=${vm.getLayoutHeaderVM()})"></div>
+<!--</header>-->
+
+<!-- content page -->
+<section class="bgwhite p-t-60 p-b-25">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-lg-9 p-b-80" >
+				<div class="p-r-50 p-r-0-lg">
+					<div class="p-b-40">
+
+						<div class="blog-detail-txt p-t-33">
+							<h4 class="p-b-11 m-text24" th:text="${blog.getTitle()}">
+
+							</h4>
+
+							<div class="s-text8 flex-w flex-m p-b-21">
+
+								<span th:text="${blog.getCreatedDate()}">
+										<!--28 Dec, 2018-->
+										<span class="m-l-3 m-r-6">|</span>
+									</span>
+
+							</div>
+
+							<p class="p-b-25 font-weight-bold" th:text="${blog.getShortDesc()}">
+
+							</p>
+
+							<span th:text="${blog.getContent()}" th:remove="tag"></span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-lg-3 p-b-75">
+				<div class="rightbar">
+					<form class="form-inline my-2 my-lg-0" th:action="@{/blog}" th:object="${title}" method="get">
+						<div class="pos-relative bo11 of-hidden">
+							<input class="s-text7 size16 p-l-23 p-r-50" type="search" th:field="*{title}" name="search-product" placeholder="Search">
+
+							<button class="flex-c-m size5 ab-r-m color1 color0-hov trans-0-4">
+								<i class="fs-13 fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+					</form>
+
+					<!-- Categories -->
+					<h4 class="m-text23 p-t-56 p-b-34">
+						Categories
+					</h4>
+
+					<ul>
+						<li>
+							<a th:href="${'/product/?categoryId='+category.getId()}" class="s-text13 p-t-5 p-b-5" th:each="category : ${vm.getCategoryVMList()}">
+								<p th:text="${category.getName()}" class="p-t-6 p-b-8 bo7"></p>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer_info"></div>
+<!--</footer>-->
+
+<!-- Back to top -->
+<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+</div>
+
+<!-- Container Selection -->
+<div id="dropDownSelect1"></div>
+<div id="dropDownSelect2"></div>
+
+
+
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/popper.js}"></script>
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/select2/select2.min.js}"></script>
+
+<script type="text/javascript">
+    $(".selection-1").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+
+    $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect2')
+    });
+</script>
+<!--===============================================================================================-->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+.blog-image{
+    width: 600px !important;
+    height: 450px;
+    background-size: cover;
+}
+.pagination {
+    margin-right: -6px;
+    margin-left: -6px;
+}
+
+.pagination li {
+    border-radius: 50%;
+    border: 1px solid #eeeeee;
+    margin-right: 10px;
+}
+
+.pagination li a{
+    color: #808080;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+}
+
+.active-pagination {
+    background-color: #222222;
+}
+
+.active-pagination a{
+    color: white !important;
+}
+
+.active-pagination:hover a{
+    color: #0056b3 !important;
+}
+.page-link{
+    border-radius: 50%;
+}

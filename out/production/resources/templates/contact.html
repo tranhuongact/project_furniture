@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Contact</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" th:href="@{/images/core-img/favicon.ico}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/themify/themify-icons.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/elegant-font/html-css/style.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animate/animate.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css-hamburgers/hamburgers.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animsition/css/animsition.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/select2/select2.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <!--===============================================================================================-->
+    <style>
+        .require{color: red}
+        .bo4{border: 1px solid #e6e6e6 !important}
+    </style>
+
+</head>
+<body class="animsition">
+
+<!-- Header -->
+<div th:replace="fragments/header :: header_info (vm=${vm.getLayoutHeaderVM()})"></div>
+
+<!-- Title Page -->
+<section>
+    <img th:src="@{/images/product-img/product-new-arrival.jpg}" alt="" style="width: 100%; background-size: cover;">
+</section>
+
+<!-- content page -->
+<section class="bgwhite p-t-66 p-b-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 p-b-30">
+                <div class="p-r-0-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.887673994812!2d105.77392931488356!3d21.037179985993834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455f90fe8ad65%3A0xec38b94cb36de0ab!2zSOG7hyBUaOG7kW5nIMSQw6BvIHThuqFvIENOVFQgLSBUM0ggSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1557500425625!5m2!1svi!2s" width="100%" height="600px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-b-30">
+                <form class="leave-comment" th:action="@{/contact}" th:object="${contact}" method="post" id="myForm">
+                    <h4 class="m-text26 p-b-36">
+                        Send us your message
+                    </h4>
+
+                    <!--<div th:if="${param.sendSuccess}">-->
+                        <!--<div class="alert alert-primary">-->
+                            <!--Send success !!-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div th:if="${param.sendFail}">-->
+                        <!--<div class="alert alert-danger">-->
+                            <!--Send fail !!-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="m-b-20">
+                        <label>Full name <span class="require">*</span></label>
+                        <input th:field="*{fullName}" class="size15 s-text7 bo4 p-l-22 p-r-22" type="text" name="name"  placeholder="Full Name" required>
+                    </div>
+
+                    <div class="m-b-20">
+                        <label>Phone number <span class="require">*</span></label>
+                        <input th:field="*{phoneNumber}" class="size15 s-text7 bo4 p-l-22 p-r-22" type="text" name="phone-number"  placeholder="Phone Number" required>
+                    </div>
+
+                    <div class="m-b-20">
+                        <label>Email <span class="require">*</span></label>
+                        <input th:field="*{email}" class="size15 s-text7 bo4 p-l-22 p-r-22" type="text" name="email" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="m-b-20">
+                        <label>Message <span class="require">*</span></label>
+                        <textarea th:field="*{message}" class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message" required></textarea>
+                    </div>
+
+                    <div class="form-group w-size25">
+                        <!-- Button -->
+                        <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4 btn-send" type="submit">
+                            Send
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer_info"></div>
+
+<!-- Back to top -->
+<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+</div>
+
+<!-- Container Selection -->
+<div id="dropDownSelect1"></div>
+<div id="dropDownSelect2"></div>
+
+
+
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/popper.js}"></script>
+<script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/admin/nprogress/nprogress.js}"></script>
+
+<script th:src="@{/vendors/js/popper.min.js}"></script>
+<script th:src="@{/vendors/js/axios.min.js}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" th:src="@{/vendors/select2/select2.min.js}"></script>
+<script type="text/javascript">
+    $(".selection-1").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+
+    $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect2')
+    });
+</script>
+<!--===============================================================================================-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+<script th:src="@{/js/map-custom.js}"></script>
+<!--===============================================================================================-->
+
+<script type="text/javascript">
+
+        $('.btn-send').on('click', function(){
+            swal("Send successfully !", "success");
+        });
+
+
+</script>
+
+<script th:src="@{/js/main.js}"></script>
+
+
+</body>
+</html>
