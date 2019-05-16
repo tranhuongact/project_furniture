@@ -32,7 +32,6 @@ $(document).ready(function() {
 
     $("#new-product").on("click", function () {
         dataProduct = {};
-        $("#change-product-mainImage").val("");
         $('#input-product-name').val("");
         $('#input-product-desc').val("");
         $("#input-product-category").val("");

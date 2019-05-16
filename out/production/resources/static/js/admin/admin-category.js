@@ -31,7 +31,6 @@ $(document).ready(function() {
 
     $("#new-category").on("click", function () {
         dataCategory = {};
-        $("#change-category-mainImage").val("");
         $('#input-category-name').val("");
         $('#input-category-desc').val("");
         $('.category-main-image').attr('src', 'https://www.vietnamprintpack.com/images/default.jpg');

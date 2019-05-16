@@ -32,7 +32,6 @@ $(document).ready(function() {
 
     $("#new-blog").on("click", function () {
         dataBlog = {};
-        $("#change-blog-image").val("");
         $('#input-title').val("");
         $('#input-username').val("");
         $("#input-short-desc").val("");
