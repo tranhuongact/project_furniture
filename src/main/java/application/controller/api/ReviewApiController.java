@@ -42,10 +42,10 @@ public class ReviewApiController {
                     review.setUser(userEntity);
                     reviewService.addReview(review);
 
-                    result.setMessage("Cảm ơn đã đóng góp ý kiến!");
+                    result.setMessage("Thanks for your review!");
                     result.setSuccess(true);
                 }else{
-                    result.setMessage("Làm ơn không spam!");
+                    result.setMessage("please don't spam!");
                     result.setSuccess(false);
                 }
 

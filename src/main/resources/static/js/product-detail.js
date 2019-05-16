@@ -57,7 +57,7 @@ $(document).ready(function() {
         if (sum > parseInt(pdAmountInStore)) {
             swal(
                 'Fail',
-                'Không đủ sản phẩm trong kho'
+                'Not enough product in store'
             );
         }
         else{
