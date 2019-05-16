@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
 
-<title>Amado! </title>
+<title>Furniture Admin! </title>
 
 <!-- Bootstrap -->
 <link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.css}" rel="stylesheet">
@@ -36,7 +36,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a th:href="@{/admin}" class="site_title"><i class="fa fa-paw"></i> <span>Amado!</span></a>
+            <a th:href="@{/admin}" class="site_title"><i class="fa fa-paw"></i> <span>Furniture!</span></a>
           </div>
 
           <div class="clearfix"></div>
@@ -117,20 +117,20 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <canvas id="chart-sum-product-order-by-category-type-bar" style="height: 500px;"></canvas>
-                    <canvas id="chart-sum-product-order-by-category-type-pie" style="height: 500px;"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!--<div class="row">-->
+              <!--<div class="col-lg-12 grid-margin stretch-card">-->
+                <!--<div class="card">-->
+                  <!--<div class="card-body">-->
+                    <!--<canvas id="chart-sum-product-order-by-category-type-bar" style="height: 500px;"></canvas>-->
+                    <!--<canvas id="chart-sum-product-order-by-category-type-pie" style="height: 500px;"></canvas>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
 
           </div>
 
-          <footer class="footer" th:replace="fragments/footer_admin :: footer_admin_info"></footer>
+          <!--<footer class="footer" th:replace="fragments/footer_admin :: footer_admin_info"></footer>-->
 
         </div>
 
@@ -187,5 +187,14 @@
     var vm = [[${vm}]]; /* có vm lấy từ BE truyền xuống => truyền vm từ html sang js để xử lý */
 
 </script>
+
+<!--test for chart-->
+  <link rel="stylesheet" th:href="@{/vendors2/iconfonts/mdi/css/materialdesignicons.min.css}">
+  <link rel="stylesheet" th:href="@{/vendors2/css/vendor.bundle.base.css}">
+  <script th:src="@{/vendors2/js/vendor.bundle.base.js}"></script>
+  <script th:src="@{/vendors2/js/vendor.bundle.addons.js}"></script>
+  <script th:src="@{/js2/off-canvas.js}"></script>
+  <script th:src="@{/js2/misc.js}"></script>
+  <script th:src="@{/js2/admin-chart.js}"></script>
 </body>
 </html>
