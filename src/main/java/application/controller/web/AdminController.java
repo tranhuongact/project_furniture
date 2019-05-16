@@ -77,10 +77,10 @@ public class AdminController extends BaseController{
         if(userEntity!=null) {
             Role role = roleService.getRoleByUser(userEntity.getId());
             if (role.getId() != RoleIdConstant.Role_Admin) {
-                return "redirect:/user/sign-in";
+                return "redirect:/login";
             }
         } else{
-            return "redirect:/user/sign-in";
+            return "redirect:/login";
         }
 
         vm.setCountProductByCategory(chartVM);
@@ -92,9 +92,9 @@ public class AdminController extends BaseController{
     }
 
     @GetMapping("/product")
-    public String product(Model model,
-                          @Valid @ModelAttribute("productname") ProductVM productName) {
+    public String product(Model model) {
 
+//        @Valid @ModelAttribute("productname") ProductVM productName
         AdminProductVM vm = new AdminProductVM();
 
         /**

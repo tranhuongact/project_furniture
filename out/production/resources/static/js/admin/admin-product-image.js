@@ -31,6 +31,7 @@ $(document).ready(function() {
 
     $("#new-product-image").on("click", function () {
         dataProductImage = {};
+        $("#change-product-image").val("");
         $("#input-product").val("");
         $('.product-image').attr('src', 'https://www.vietnamprintpack.com/images/default.jpg');
 
@@ -135,7 +136,7 @@ $(document).ready(function() {
                 'Some error when delete product-image',
                 'error'
             );
-        })
-    })
+        });
+    });
 
 });

@@ -41,7 +41,7 @@ public class ProductImageApiController {
             productImageService.addNewProductImage(productImage);
 
             result.setData(productImage.getId());
-            result.setMessage("Save product-image successfully: productId = " + productService.findOne(dto.getProductId()));
+            result.setMessage("Save product-image successfully: " + productImage.getId());
             result.setSuccess(true);
 
         } catch (Exception e) {
