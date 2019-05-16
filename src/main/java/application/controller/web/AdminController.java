@@ -330,11 +330,12 @@ public class AdminController extends BaseController{
             orderProductVM.setProductId(orderProduct.getProductId());
             orderProductVM.setOrderId(orderProduct.getOrderId());
             orderProductVM.setProductName(orderProduct.getProduct().getName());
-            if(orderProduct.getOrder() == null){
-                orderProductVM.setCustomerName("Unknown");
-            } else {
-                orderProductVM.setCustomerName(orderProduct.getOrder().getCustomerName());
-            }
+//            if(orderProduct.getOrder() == null){
+//                orderProductVM.setCustomerName("Unknown");
+//            } else {
+//
+//            }
+            orderProductVM.setCustomerName(orderProduct.getOrder().getCustomerName());
             orderProductVM.setAmount(orderProduct.getAmount());
             orderProductVM.setPrice(String.valueOf(orderProduct.getPrice()));
             orderProductVM.setCreatedDate(orderProduct.getOrder().getCreatedDate());

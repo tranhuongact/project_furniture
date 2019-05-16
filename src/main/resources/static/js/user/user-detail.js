@@ -28,7 +28,7 @@ $(document).ready(function() {
             $("#myForm")[0].submit();
         }, function(err){
             NProgress.done();
-            $("myForm")[0].submit();
+            $("#myForm")[0].submit();
         });
     })
 });
