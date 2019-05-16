@@ -70,6 +70,9 @@ public class BlogApiController {
                 dto.setMainImage(blog.getMainImage());
                 dto.setContent(blog.getContent());
                 dto.setCreatedDate(blog.getCreatedDate());
+                if(blog.getUser() != null) {
+                    dto.setUserId(blog.getUser().getId());
+                }
 
                 result.setSuccess(true);
                 result.setMessage("Get detail blog successfully !");
@@ -96,6 +99,7 @@ public class BlogApiController {
             blogEntity.setShortDesc(dto.getShortDesc());
             blogEntity.setMainImage(dto.getMainImage());
             blogEntity.setContent(dto.getContent());
+            blogEntity.setUser(userService.findOne(dto.getUserId()));
             blogEntity.setCreatedDate(new Date());
             blogService.addNewBlog(blogEntity);
 

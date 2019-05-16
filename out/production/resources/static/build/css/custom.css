@@ -265,6 +265,8 @@ html , body{
 }
 .img-circle.profile_img {
     width: 70%;
+    height: 57px;
+    background-size: cover;
     background: #fff;
     margin-left: 15%;
     z-index: 1000;
@@ -1553,7 +1555,7 @@ ul.msg_list li a .message {
     -webkit-box-shadow: none;
     right: 0;
     left: auto;
-    width: 220px
+    width: 160px;
 }
 .navbar-nav .open .dropdown-menu.msg_list {
     width: 300px

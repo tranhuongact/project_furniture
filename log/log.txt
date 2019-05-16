@@ -81,3 +81,9 @@
 2019-May-16 14:03:19 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
 2019-May-16 14:15:14 PM [main] DEBUG application.Application - Start main ---------------- 
 2019-May-16 14:15:14 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2019-May-16 15:16:55 PM [main] DEBUG application.Application - Start main ---------------- 
+2019-May-16 15:16:55 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2019-May-16 15:56:32 PM [main] DEBUG application.Application - Start main ---------------- 
+2019-May-16 15:56:32 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2019-May-16 16:07:13 PM [main] DEBUG application.Application - Start main ---------------- 
+2019-May-16 16:07:13 PM [restartedMain] DEBUG application.Application - Start main ---------------- 

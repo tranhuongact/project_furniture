@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
 
-    <title>Gentelella Alela! | </title>
+    <title>Amado! </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -27,21 +27,21 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                    <a th:href="@{/admin}" class="site_title"><i class="fa fa-paw"></i> <span>Amado!</span></a>
                 </div>
 
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
-                <!--<div class="profile clearfix">-->
-                <!--<div class="profile_pic">-->
-                <!--<img th:src="@{/images/admin/img.jpg}" alt="..." class="img-circle profile_img">-->
-                <!--</div>-->
-                <!--<div class="profile_info">-->
-                <!--<span>Welcome,</span>-->
-                <!--<h2>John Doe</h2>-->
-                <!--</div>-->
-                <!--</div>-->
+                <div class="profile clearfix" th:object="${vm}">
+                    <div class="profile_pic">
+                        <img th:src="${vm.getLayoutHeaderAdminVM().getAvatar()}" alt="image" class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2 th:text="${vm.getLayoutHeaderAdminVM().getUserName()}"></h2>
+                    </div>
+                </div>
                 <!-- /menu profile quick info -->
 
                 <br />
@@ -70,10 +70,10 @@
                                 <a th:href="@{/admin/blog}"><i class="fa fa-newspaper-o"></i> Blog </a>
                             </li>
                             <li>
-                                <a th:href="@{/admin/contact}"><i class="fa fa-address-book"></i> Blog </a>
+                                <a th:href="@{/admin/contact}"><i class="fa fa-envelope"></i> Contact </a>
                             </li>
                             <li>
-                            <a th:href="@{/admin/order}"><i class="fa fa-list-alt"></i> Order </a>
+                                <a th:href="@{/admin/order}"><i class="fa fa-list-alt"></i> Order </a>
                             </li>
                         </ul>
                     </div>
@@ -101,7 +101,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Index</th>
-                            <th scope="col">Contact_id</th>
+                            <!--<th scope="col">Contact_id</th>-->
                             <th scope="col">Full name</th>
                             <th scope="col">Phone number</th>
                             <th scope="col">Email</th>
@@ -113,7 +113,7 @@
                         <tbody>
                         <tr scope="row" th:each="contact, iterStat : ${vm.getContactVMList()}">
                             <td th:text="${iterStat.count}" class="text-center"></td>
-                            <td th:text="${contact.getId()}"  class="text-center"></td>
+                            <!--<td th:text="${contact.getId()}"  class="text-center"></td>-->
                             <td th:text="${contact.getFullName()}"></td>
                             <td th:text="${contact.getPhoneNumber()}"></td>
                             <td th:text="${contact.getEmail()}"></td>
@@ -156,7 +156,7 @@
 
                             <div class="form-group margin-bottom-15">
                                 <label>Message:</label>
-                                <textarea type="text" class="form-control" id="input-message" readonly></textarea>
+                                <textarea type="text" class="form-control size20" id="input-message" readonly></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
