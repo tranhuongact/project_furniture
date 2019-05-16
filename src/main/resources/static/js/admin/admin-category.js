@@ -60,10 +60,10 @@ $(document).ready(function() {
     });
 
     $(".btn-save-category").on("click", function () {
-        if($("#input-category-name").val() === "" || $("#input-category-desc").val() === "" ) {
+        if($("#input-category-name").val() === ""  ) {
             swal(
                 'Error',
-                'You need to fill all values',
+                'You need to fill name ',
                 'error'
             );
             return;
