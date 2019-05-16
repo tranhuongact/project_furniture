@@ -74,25 +74,9 @@ public class OrderApiController {
 
         return result;
     }
-    @GetMapping("/delete/{orderId}")
-    public BaseApiResult deleteCartProduct(@PathVariable int orderId) {
-        BaseApiResult result = new BaseApiResult();
-
-        try {
-            if(orderService.deleteOrder(orderId)== true) {
-                result.setMessage("Delete success");
-                result.setSuccess(true);
-                return result;
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-        }
-        result.setSuccess(false);
-        result.setMessage("Fail!");
-        return result;
-    }
+    
     @GetMapping(value = "/delete/{orderId}")
-    public BaseApiResult deleteProductImage (@PathVariable int orderId) {
+    public BaseApiResult deleteOrder (@PathVariable int orderId) {
         BaseApiResult result= new BaseApiResult();
 
         try {
