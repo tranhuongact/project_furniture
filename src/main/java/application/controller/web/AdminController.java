@@ -77,10 +77,10 @@ public class AdminController extends BaseController{
         if(userEntity!=null) {
             Role role = roleService.getRoleByUser(userEntity.getId());
             if (role.getId() != RoleIdConstant.Role_Admin) {
-                return "redirect:/user/sign-in";
+                return "redirect:/";
             }
         } else{
-            return "redirect:/user/sign-in";
+            return "redirect:/";
         }
 
         vm.setCountProductByCategory(chartVM);
