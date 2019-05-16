@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
 
-    <title>Amado! </title>
+    <title>Order </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -104,23 +104,28 @@
                         <tr>
                             <th scope="col">Index</th>
                             <th scope="col">Customer name</th>
-                            <th scope="col">Product name</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Total Price</th>
                             <th scope="col">Created date</th>
+                            <th scope="col">Edit</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  scope="row" th:each="order, iterStat : ${vm.getOrderProductVMList()}">
+                        <tr  scope="row" th:each="order, iterStat : ${vm.getOrderVMList()}">
                             <td th:text="${iterStat.count}" class="text-center"></td>
                             <!--<td th:text="${order.getOrderId()}" class="text-center"></td>-->
                             <td th:text="${order.getCustomerName()}"></td>
-                            <td th:text="${order.getProductName()}"></td>
-                            <td th:text="${order.getAmount()}"></td>
-                            <td th:text="${order.getPrice()}"></td>
+                            <td th:text="${order.getEmail()}"></td>
+                            <td th:text="${order.getAddress()}"></td>
+                            <td th:text="${order.getPhoneNumber()}"></td>
+                            <td th:text="'$'+${order.getPrice()}"></td>
                             <td th:text="${order.getCreatedDate()}"></td>
+
                             <td class="text-center">
-                                <i class="fa fa-edit edit-order" th:attr="data-order = ${order.getOrderId()}" data-toggle="modal" title="Edit order" data-target="#exampleModalLong" style="cursor: pointer"></i>
+                                <i class="fa fa-edit edit-order" th:attr="data-order = ${order.getId()}" data-toggle="modal" title="Edit order" data-target="#exampleModalLong" style="cursor: pointer"></i>
+                                <i class="fa fa-trash-o delete-order" th:attr="data-order = ${order.getId()}" data-toggle="modal" title="Delete order" aria-hidden="true" style="cursor: pointer"></i>
                             </td>
                         </tr>
                         </tbody>
@@ -146,18 +151,18 @@
                             </div>
 
                             <div class="form-group margin-bottom-15">
-                                <label>Product name:</label>
-                                <input type="text" class="form-control" id="input-product-name">
+                                <label>Email:</label>
+                                <input type="text" class="form-control" id="input-email">
                             </div>
 
                             <div class="form-group margin-bottom-15">
-                                <label>Amount:</label>
-                                <input type="number" class="form-control" id="input-amount">
+                                <label>Address:</label>
+                                <input type="text" class="form-control" id="input-address">
                             </div>
 
                             <div class="form-group margin-bottom-15">
-                                <label>Price:</label>
-                                <input type="text" class="form-control" id="input-price">
+                                <label>Phone number:</label>
+                                <input type="number" class="form-control" id="input-phone-number">
                             </div>
                         </div>
                         <div class="modal-footer">

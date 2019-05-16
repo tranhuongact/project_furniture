@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
 
-    <title>Amado! </title>
+    <title>Product </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -121,7 +121,7 @@
                                 <td th:text="${product.getName()}"></td>
                                 <td th:text="${product.getCategoryName()}"></td>
                                 <td th:text="${product.getShortDesc()}"></td>
-                                <td th:text="${product.getPrice() + ' $'}"></td>
+                                <td th:text="'$'+${product.getPrice()}"></td>
                                 <td th:text="${product.getCreatedDate()}"></td>
                                 <td class="text-center">
                                     <i class="fa fa-edit tooltip-test edit-product" th:attr="data-product = ${product.getId()}" data-toggle="modal" title="Edit product" data-target="#exampleModalLong" style="cursor: pointer"></i>

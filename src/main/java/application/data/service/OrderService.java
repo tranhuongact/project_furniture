@@ -26,6 +26,25 @@ public class OrderService {
         return orderRepository.findOne(orderId);
     }
 
+    public boolean deleteOrder(int orderId){
+        try {
+            orderRepository.delete(orderId);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
+    public boolean updateOrder(Order order) {
+        try {
+            orderRepository.save(order);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
+
     public List<Order> getListAllOrders() {
         try {
             return orderRepository.findAll();
