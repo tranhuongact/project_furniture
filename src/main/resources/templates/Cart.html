@@ -66,10 +66,10 @@
                         </td>
                         <td class="column-2" >
                             <p th:text="${cartProduct.getProductName()}"></p>
-                            <button class="delete-cart-product" style="color: red" th:attr="data-id=${cartProduct.getId()}">Xóa</button>
+                            <button class="delete-cart-product" style="color: red" th:attr="data-id=${cartProduct.getId()}">Delete</button>
                         </td>
 
-                        <td class="column-3"  th:text="${cartProduct.getPricePerProduct()}+' đ'"></td>
+                        <td class="column-3"  th:text="'$'+${cartProduct.getPricePerProduct()}"></td>
                         <td class="column-4 p-l-70">
 
                             <div class="flex-w bo5 of-hidden w-size17">
@@ -90,7 +90,7 @@
                                 </button>
                             </div>
                         </td>
-                        <td class="column-5" th:text="${cartProduct.getPrice()}+' đ'"></td>
+                        <td class="column-5" th:text="'$'+${cartProduct.getPrice()}"></td>
                     </tr>
                     </th:block>
 

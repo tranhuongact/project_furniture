@@ -32,7 +32,7 @@ public class ReviewApiController {
         String  username = SecurityContextHolder.getContext().getAuthentication().getName();
         User userEntity = userService.findUserByUsername(username);
         try {
-                if(reviewService.checkUserReviewed(dto.getProductId(), userEntity.getId()).size() > 3){
+                if(reviewService.checkUserReviewed(dto.getProductId(), userEntity.getId()).size() < 3){
                     Review review = new Review();
                     review.setCreatedDate(new Date());
                     review.setReview(dto.getReview());
