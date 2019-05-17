@@ -7,4 +7,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+    config.extraPlugins = 'imgur';
+    config.imgurClientId = '02afc48efa647c8';
 };

@@ -2,10 +2,7 @@ package application.controller.api;
 
 import application.data.model.Category;
 import application.data.model.Product;
-import application.data.service.BrandService;
-import application.data.service.CategoryService;
-import application.data.service.ProductImageService;
-import application.data.service.ProductService;
+import application.data.service.*;
 import application.model.api.BaseApiResult;
 import application.model.api.DataApiResult;
 import application.model.dto.ProductDTO;
@@ -35,6 +32,9 @@ public class ProductApiController {
     private BrandService brandService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ProductImageService productImageService;
 
     @PostMapping(value = "/create")
@@ -50,7 +50,9 @@ public class ProductApiController {
             product.setMainImage(dto.getMainImage());
             product.setCategory(categoryService.findOne(dto.getCategoryId()));
             product.setBrand(brandService.findOne(dto.getBrandId()));
+            product.setUser(userService.findOne(dto.getUserId()));
             product.setAmount(dto.getAmount());
+            product.setDescription(dto.getDescription());
             product.setCreatedDate(new Date());
 
             productService.addNewProduct(product);
@@ -80,7 +82,9 @@ public class ProductApiController {
             product.setMainImage(dto.getMainImage());
             product.setCategory(categoryService.findOne(dto.getCategoryId()));
             product.setBrand(brandService.findOne(dto.getBrandId()));
+            product.setUser(userService.findOne(dto.getUserId()));
             product.setAmount(dto.getAmount());
+            product.setDescription(dto.getDescription());
             product.setCreatedDate(new Date());
 
             productService.addNewProduct(product);
@@ -100,7 +104,6 @@ public class ProductApiController {
 
         try {
             Product product = productService.findOne(productId);
-
 
             product.setAmount(dto.getAmount());
 
@@ -132,12 +135,17 @@ public class ProductApiController {
                 if(productEntity.getBrand() != null) {
                     dto.setBrandId(productEntity.getBrand().getId());
                 }
+                if(productEntity.getUser() != null) {
+                    dto.setUserId(productEntity.getUser().getId());
+                }
                 dto.setMainImage(productEntity.getMainImage());
                 dto.setName(productEntity.getName());
                 dto.setPrice(productEntity.getPrice());
                 dto.setShortDesc(productEntity.getShortDesc());
                 dto.setAmount(productEntity.getAmount());
+                dto.setDescription(productEntity.getDescription());
                 dto.setCreatedDate(productEntity.getCreatedDate());
+
                 result.setSuccess(true);
                 result.setData(dto);
             }

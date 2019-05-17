@@ -100,30 +100,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         };
     }
 
-//    @Bean
-//    public SpringResourceTemplateResolver htmlTemplateResolver(){
-//        SpringResourceTemplateResolver emailTemplateResolver = new SpringResourceTemplateResolver();
-////        emailTemplateResolver.setPrefix("classpath:/templates/");
-//        emailTemplateResolver.setSuffix(".html");
-//        emailTemplateResolver.setTemplateMode(StandardTemplateModeHandlers.HTML5.getTemplateModeName());
-//        emailTemplateResolver.setCharacterEncoding(StandardCharsets.UTF_8.name());
-//        emailTemplateResolver.setCacheable(false);
-//        return emailTemplateResolver;
-//    }
-//
-//    @Bean
-//    public SpringTemplateEngine springTemplateEngine() {
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.addTemplateResolver(htmlTemplateResolver());
-//        return templateEngine;
-//    }
-//
-//    @Bean
-//    public ThymeleafViewResolver thymeleafViewResolver(){
-//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//        viewResolver.setTemplateEngine(springTemplateEngine());
-//        return viewResolver;
-//    }
-
 
 }

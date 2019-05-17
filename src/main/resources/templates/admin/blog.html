@@ -19,6 +19,8 @@
     <!-- DataTable -->
     <link th:href="@{/vendors/datatable/dataTables.bootstrap4.css}" rel="stylesheet">
     <link th:href="@{/build/css/custom.css}" rel="stylesheet">
+    <!--CKEditor-->
+    <script th:src="@{/ckeditor/ckeditor.js}"></script>
 </head>
 
 <body class="nav-md">
@@ -133,7 +135,7 @@
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog" role="document" style="width: 800px; font-size: 15px">
                     <div class="modal-content">
                         <div class="modal-header">
                             <span class="modal-title" id="exampleModalLongTitle" style="font-size: 20px;">Add new/update blog</span>
@@ -208,6 +210,10 @@
     $(document).ready(function() {
         $('#blogDataTable').DataTable();
     } );
+
+    CKEDITOR.replace('input-content', {
+        height: 400
+    });
 </script>
 
 </body>

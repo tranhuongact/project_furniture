@@ -14,6 +14,8 @@ public class ProductDTO {
     private String mainImage;
     private Double price;
     private int brandId;
+    private int userId;
+    private String description;
     private int amount;
 
     @JsonSerialize(using = CustomDateSerializer.class)
@@ -73,6 +75,22 @@ public class ProductDTO {
 
     public void setBrandId(int brandId) {
         this.brandId = brandId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getAmount() {

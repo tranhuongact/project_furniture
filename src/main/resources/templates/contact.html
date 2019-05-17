@@ -62,17 +62,11 @@
                         Send us your message
                     </h4>
 
-                    <!--<div th:if="${param.sendSuccess}">-->
-                        <!--<div class="alert alert-primary">-->
-                            <!--Send success !!-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <!--<div th:if="${param.sendFail}">-->
-                        <!--<div class="alert alert-danger">-->
-                            <!--Send fail !!-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <div th:if="${param.sendFail}">
+                        <div class="alert alert-danger">
+                            Send fail !!
+                        </div>
+                    </div>
 
                     <input type="hidden" th:field="*{id}">
 
@@ -154,14 +148,8 @@
 <script th:src="@{/js/map-custom.js}"></script>
 <!--===============================================================================================-->
 
-<script type="text/javascript">
 
-        $('.btn-send').on('click', function(){
-            swal("Send successfully !", "success");
-        });
-
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 <script th:src="@{/js/main.js}"></script>
 

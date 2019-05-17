@@ -175,6 +175,7 @@ public class BlogController extends BaseController{
         blogVM.setSlug(blog.getSlug());
         blogVM.setMainImage(blog.getMainImage());
         blogVM.setShortDesc(blog.getShortDesc());
+        blogVM.setContent(blog.getContent());
         blogVM.setCreatedDate(blog.getCreatedDate());
 
         vm.setLayoutHeaderVM(this.getLayoutHeaderVM(response, request, principal));

@@ -48,6 +48,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <style>
+        body{padding-top: 0px !important;}
+    </style>
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -115,7 +118,8 @@
 
 				</span>
 
-            <p class="s-text8 p-t-10" th:text="${vm.getProductVM().getShortDesc()}">
+            <hr>
+            <p class="s-text8 p-t-10" th:utext="${vm.getProductVM().getShortDesc()}" th:remove="tag">
 
             </p>
 
@@ -165,7 +169,7 @@
                 </h5>
 
                 <div class="dropdown-content dis-none p-t-15 p-b-23">
-                    <p class="s-text8" th:text="${vm.getProductVM().getShortDesc()}">
+                    <p class="s-text8" th:utext="${vm.getProductVM().getDescription()}" th:remove="tag">
 
                     </p>
                 </div>

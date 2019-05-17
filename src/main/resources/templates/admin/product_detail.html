@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" th:href="@{/images/admin/favicon.ico}" type="image/ico"/>
+
+    <title>Amado! </title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/admin/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/admin/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/vendors/admin/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- DataTable -->
+    <link th:href="@{/vendors/datatable/dataTables.bootstrap4.css}" rel="stylesheet">
+    <link th:href="@{/build/css/custom.css}" rel="stylesheet">
+
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a th:href="@{/admin}" class="site_title"><i class="fa fa-paw"></i> <span>Amado!</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix" th:object="${vm}">
+                    <div class="profile_pic">
+                        <img th:src="${vm.getLayoutHeaderAdminVM().getAvatar()}" alt="image" class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2 th:text="${vm.getLayoutHeaderAdminVM().getUserName()}"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>General</h3>
+                        <ul class="nav side-menu">
+                            <li>
+                                <a th:href="@{/admin}"><i class="fa fa-home"></i> Home </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/category}"><i class="fa fa-list-ul"></i> Category </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/brand}"><i class="fa fa-tags"></i> Brand </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/product}"><i class="fa fa-gift"></i> Product </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/product-image}"><i class="fa fa-file-picture-o"></i> Product Image </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/blog}"><i class="fa fa-newspaper-o"></i> Blog </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/contact}"><i class="fa fa-envelope"></i> Contact </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/order}"><i class="fa fa-list-alt"></i> Order </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div th:replace="fragments/header_admin :: header_admin_info (vm=${vm.getLayoutHeaderAdminVM()})">
+
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="content">
+                <div class="page-header">
+                    <h1>Update product</h1>
+                </div>
+            </div>
+
+            <form th:action="@{/admin/product}" th:object="${product}" method="post" id="myForm" style="font-size: 16px;">
+                <img style="max-width: 200px; height: auto; display: block; margin: 0 auto;" th:src="@{/images/product-img/default.jpg}" class="product-main-image">
+
+                <div>
+                    <input type='file' id="change-product-mainImage" style="margin: 10px auto"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Product name</label>
+                    <input type="text" class="form-control" id="input-product-name" th:value="${product.getName()}">
+                </div>
+
+                <div class="form-row overflow_hidden">
+                    <div class="form-group col-md-4" style="padding-left: 0">
+                        <label>Category</label>
+                        <select class="form-control" id="input-product-category" >
+                            <option th:field="*{categoryId}" th:each="category : ${vm.getCategoryVMList()}" th:value="${category.getId()}" th:text="${category.getName()}" ></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Brand</label>
+                        <select class="form-control" id="input-product-brand">
+                            <option th:each="brand : ${vm.getBrandVMList()}" th:value="${brand.getId()}" th:text="${brand.getName()}" th:field="*{brandId}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4" style="padding-right: 0">
+                        <label>User</label>
+                        <select class="form-control" id="input-product-user">
+                            <option th:each="user : ${vm.getUserVMList()}" th:value="${user.getId()}" th:text="${user.getName()}" th:field="*{userId}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row overflow_hidden">
+                    <div class="form-group col-md-2" style="padding-left: 0">
+                        <label>Amount</label>
+                        <input type="number" class="form-control" id="input-product-amount" th:field="*{amount}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Price</label>
+                        <input type="text" class="form-control" id="input-product-price" th:field="*{price}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Product short description</label>
+                    <textarea type="text" class="form-control" id="input-product-shortDesc" th:field="*{shortDesc}"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Product description</label>
+                    <textarea type="text" class="form-control" id="input-product-desc" th:field="*{description}"></textarea>
+                </div>
+
+                <div style="padding-top: 10px">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:right">
+                        <a th:href="@{/admin/product}">Cancel</a>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-save-product" style="float:right">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer th:replace="fragments/footer_admin :: footer_admin_info"></footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script th:src="@{/vendors/admin/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/admin/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/admin/nprogress/nprogress.js}"></script>
+
+<script th:src="@{/vendors/js/popper.min.js}"></script>
+<script th:src="@{/vendors/js/axios.min.js}"></script>
+<script th:src="@{/vendors/js/sweetalert2.all.min.js}"></script>
+<!--DataTable-->
+<script th:src="@{/vendors/datatable/jquery.dataTables.js}"></script>
+<script th:src="@{/vendors/datatable/dataTables.bootstrap4.js}"></script>
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.min.js}"></script>
+<script th:src="@{/js/admin/admin-product.js}"></script>
+
+</body>
+</html>
+

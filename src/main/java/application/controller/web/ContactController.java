@@ -56,14 +56,20 @@ public class ContactController extends BaseController{
                            HttpServletResponse response,
                            HttpServletRequest request, final Principal principal){
 
-        ContactDetailVM vm = new ContactDetailVM();
+        try {
+            ContactDetailVM vm = new ContactDetailVM();
 
-        contact.setCreatedDate(new Date());
-        contactService.addNewContact(contact);
+            contact.setCreatedDate(new Date());
+            contactService.addNewContact(contact);
 
-        vm.setLayoutHeaderVM(this.getLayoutHeaderVM(response, request, principal));
-        model.addAttribute("vm", vm);
+            vm.setLayoutHeaderVM(this.getLayoutHeaderVM(response, request, principal));
+            model.addAttribute("vm", vm);
 
-        return "/contact";
+            return "redirect:/contact";
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+
+        return "redirect:/contact?sendFail";
     }
 }

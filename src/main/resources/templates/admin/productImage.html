@@ -105,7 +105,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Index</th>
-                            <!--<th scope="col">Index</th>-->
+                            <th scope="col">Product image</th>
                             <th scope="col">Product name</th>
                             <th scope="col">Link</th>
                             <th scope="col">Created Date</th>
@@ -115,7 +115,9 @@
                         <tbody>
                             <tr scope="row" th:each="productImage,iterStat : ${vm.getProductImageVMList()}">
                                 <td th:text="${iterStat.count}" class="text-center"></td>
-                                <!--<td th:text="${productImage.getId()}" class="text-center"></td>-->
+                                <td class="text-center">
+                                    <img th:src="${productImage.getLink()}" alt="">
+                                </td>
                                 <td th:text="${productImage.getProductName()}"></td>
                                 <td th:text="${productImage.getLink()}"></td>
                                 <td th:text="${productImage.getCreatedDate()}"></td>

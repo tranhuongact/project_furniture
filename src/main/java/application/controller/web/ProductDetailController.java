@@ -107,6 +107,7 @@ public class ProductDetailController extends BaseController {
             productVM.setName(productEntity.getName());
             productVM.setMainImage(productEntity.getMainImage());
             productVM.setShortDesc(productEntity.getShortDesc());
+            productVM.setDescription(productEntity.getDescription());
             productVM.setPrice(productEntity.getPrice());
             productVM.setCategoryId(productEntity.getCategoryId());
             productVM.setCategoryName(productEntity.getCategory().getName());

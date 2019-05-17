@@ -19,6 +19,8 @@
     <!-- DataTable -->
     <link th:href="@{/vendors/datatable/dataTables.bootstrap4.css}" rel="stylesheet">
     <link th:href="@{/build/css/custom.css}" rel="stylesheet">
+    <!--CKEditor-->
+    <script th:src="@{/ckeditor/ckeditor.js}"></script>
 </head>
 
 <body class="nav-md">
@@ -107,8 +109,10 @@
                             <tr>
                                 <th scope="col">Index</th>
                                 <th scope="col">Product name</th>
-                                <th scope="col">Category name</th>
-                                <th scope="col">Short Desc</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Amount</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Created Date</th>
                                 <th scope="col">Action</th>
@@ -120,7 +124,9 @@
                                 <!--<td th:text="${product.getId()}"  class="text-center"></td>-->
                                 <td th:text="${product.getName()}"></td>
                                 <td th:text="${product.getCategoryName()}"></td>
-                                <td th:text="${product.getShortDesc()}"></td>
+                                <td th:text="${product.getBrandName()}"></td>
+                                <td th:text="${product.getUserName()}"></td>
+                                <td th:text="${product.getAmount()}"></td>
                                 <td th:text="${product.getPrice() + ' $'}"></td>
                                 <td th:text="${product.getCreatedDate()}"></td>
                                 <td class="text-center">
@@ -137,7 +143,7 @@
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog" role="document" style="width: 1000px; font-size: 15px">
                     <div class="modal-content">
                         <div class="modal-header">
                             <span class="modal-title" id="exampleModalLongTitle" style="font-size: 20px;">Add new/update product</span>
@@ -157,32 +163,48 @@
                                 <input type="text" class="form-control" id="input-product-name">
                             </div>
 
-                            <div class="form-group margin-bottom-15">
-                                <label>Category:</label>
-                                <select class="form-control" id="input-product-category">
-                                    <option th:each="category : ${vm.getCategoryVMList()}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
-                                </select>
+                            <div class="form-row overflow_hidden">
+                                <div class="form-group col-md-6" style="padding-left: 0">
+                                    <label>Category</label>
+                                    <select class="form-control" id="input-product-category" >
+                                        <option th:each="category : ${vm.getCategoryVMList()}" th:value="${category.getId()}" th:text="${category.getName()}" ></option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6" style="padding-right: 0">
+                                    <label>Brand</label>
+                                    <select class="form-control" id="input-product-brand">
+                                        <option th:each="brand : ${vm.getBrandVMList()}" th:value="${brand.getId()}" th:text="${brand.getName()}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row overflow_hidden">
+                                <div class="form-group col-md-6" style="padding-left: 0">
+                                    <label>User</label>
+                                    <select class="form-control" id="input-product-user">
+                                        <option th:each="user : ${vm.getUserVMList()}" th:value="${user.getId()}" th:text="${user.getName()}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label>Amount</label>
+                                    <input type="number" class="form-control" id="input-product-amount">
+                                </div>
+                                <div class="form-group col-md-4" style="padding-right: 0">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" id="input-product-price">
+                                </div>
                             </div>
 
                             <div class="form-group margin-bottom-15">
-                                <label>Product description:</label>
+                                <label>Product short description:</label>
+                                <textarea type="text" class="form-control" id="input-product-shortDesc"></textarea>
+                            </div>
+
+                            <div class="form-group margin-bottom-15">
+                                <label>Product short description:</label>
                                 <textarea type="text" class="form-control" id="input-product-desc"></textarea>
                             </div>
 
-                            <div class="form-group margin-bottom-15">
-                                <label>Price:</label>
-                                <input type="text" class="form-control" id="input-product-price">
-                            </div>
-
-                            <!--<div class="form-group margin-bottom-15" style="width: 100%">-->
-                                <!--<label>Amount:</label>-->
-                                <!--<input type="text" class="form-control" style="display: block; margin: 5px ;width: 100%" id="input-product-amount">-->
-                            <!--</div>-->
-
-                            <!--<div class="form-group margin-bottom-15" style="width: 100%">-->
-                                <!--<label>Brand:</label>-->
-                                <!--<input type="text" class="form-control" style="display: block; margin: 5px ;width: 100%" id="input-product-brand">-->
-                            <!--</div>-->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary btn-save-product">Save changes</button>
@@ -220,7 +242,15 @@
 <script>
     $(document).ready(function() {
         $('#productDataTable').DataTable();
-    } );
+    });
+
+    CKEDITOR.replace('input-product-shortDesc', {
+        height: 200
+    });
+
+    CKEDITOR.replace('input-product-desc', {
+        height: 400
+    });
 </script>
 
 </body>

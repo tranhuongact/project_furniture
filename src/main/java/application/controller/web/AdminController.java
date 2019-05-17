@@ -77,10 +77,10 @@ public class AdminController extends BaseController{
         if(userEntity!=null) {
             Role role = roleService.getRoleByUser(userEntity.getId());
             if (role.getId() != RoleIdConstant.Role_Admin) {
-                return "redirect:/";
+                return "redirect:/login";
             }
         } else{
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         vm.setCountProductByCategory(chartVM);
@@ -92,8 +92,7 @@ public class AdminController extends BaseController{
     }
 
     @GetMapping("/product")
-    public String product(Model model,
-                          @Valid @ModelAttribute("productname") ProductVM productName) {
+    public String product(Model model) {
 
         AdminProductVM vm = new AdminProductVM();
 
@@ -110,6 +109,31 @@ public class AdminController extends BaseController{
             categoryVMList.add(categoryVM);
         }
 
+        /* set list brandVM */
+        List<Brand> brandList = brandService.getListAllBrands();
+        List<BrandVM> brandVMList = new ArrayList<>();
+
+        for (Brand brand : brandList){
+            BrandVM brandVM = new BrandVM();
+            brandVM.setId(brand.getId());
+            brandVM.setName(brand.getName());
+
+            brandVMList.add(brandVM);
+        }
+
+        /* set list userVM */
+        List<User> userList = userService.getListAllUsers();
+        List<UserVM> userVMList = new ArrayList<>();
+
+        for (User user : userList){
+            UserVM userVM = new UserVM();
+            userVM.setId(user.getId());
+            userVM.setName(user.getName());
+
+            userVMList.add(userVM);
+        }
+
+        /* set list productVM */
         List<Product> productList = productService.getListAllProducts();
         List<ProductVM> productVMList = new ArrayList<>();
 
@@ -120,11 +144,25 @@ public class AdminController extends BaseController{
             } else {
                 productVM.setCategoryName(product.getCategory().getName());
             }
+
+            if(product.getUser() == null) {
+                productVM.setUserName("Unknown");
+            } else {
+                productVM.setUserName(product.getUser().getName());
+            }
+
+            if(product.getBrand() == null) {
+                productVM.setBrandName("Unknown");
+            } else {
+                productVM.setBrandName(product.getBrand().getName());
+            }
             productVM.setId(product.getId());
             productVM.setName(product.getName());
             productVM.setMainImage(product.getMainImage());
             productVM.setPrice(product.getPrice());
             productVM.setShortDesc(product.getShortDesc());
+            productVM.setAmount(product.getAmount());
+            productVM.setDescription(product.getDescription());
             productVM.setCreatedDate(product.getCreatedDate());;
 
             productVMList.add(productVM);
@@ -133,10 +171,96 @@ public class AdminController extends BaseController{
         vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
         vm.setCategoryVMList(categoryVMList);
         vm.setProductVMList(productVMList);
+        vm.setBrandVMList(brandVMList);
+        vm.setUserVMList(userVMList);
 
         model.addAttribute("vm",vm);
 
         return "/admin/product";
+    }
+
+    @GetMapping("/product/{productId}")
+    public String product(Model model,
+                          @PathVariable int productId) {
+
+        AdminProductVM vm = new AdminProductVM();
+
+        /**
+         * set list categoryVM
+         */
+        List<Category> categoryList = categoryService.getListAllCategories();
+        List<CategoryVM> categoryVMList = new ArrayList<>();
+
+        for(Category category : categoryList) {
+            CategoryVM categoryVM = new CategoryVM();
+            categoryVM.setId(category.getId());
+            categoryVM.setName(category.getName());
+            categoryVMList.add(categoryVM);
+        }
+
+        /* set list brandVM */
+        List<Brand> brandList = brandService.getListAllBrands();
+        List<BrandVM> brandVMList = new ArrayList<>();
+
+        for (Brand brand : brandList){
+            BrandVM brandVM = new BrandVM();
+            brandVM.setId(brand.getId());
+            brandVM.setName(brand.getName());
+
+            brandVMList.add(brandVM);
+        }
+
+        /* set list userVM */
+        List<User> userList = userService.getListAllUsers();
+        List<UserVM> userVMList = new ArrayList<>();
+
+        for (User user : userList){
+            UserVM userVM = new UserVM();
+            userVM.setId(user.getId());
+            userVM.setName(user.getName());
+
+            userVMList.add(userVM);
+        }
+
+        Product product = productService.findOne(productId);
+        ProductVM productVM = new ProductVM();
+
+        if(product.getCategory() == null) {
+            productVM.setCategoryName("Unknown");
+        } else {
+            productVM.setCategoryName(product.getCategory().getName());
+        }
+
+        if(product.getUser() == null) {
+            productVM.setUserName("Unknown");
+        } else {
+            productVM.setUserName(product.getUser().getName());
+        }
+
+        if(product.getBrand() == null) {
+            productVM.setBrandName("Unknown");
+        } else {
+            productVM.setBrandName(product.getBrand().getName());
+        }
+        productVM.setId(product.getId());
+        productVM.setName(product.getName());
+        productVM.setMainImage(product.getMainImage());
+        productVM.setPrice(product.getPrice());
+        productVM.setShortDesc(product.getShortDesc());
+        productVM.setAmount(product.getAmount());
+        productVM.setDescription(product.getDescription());
+        productVM.setCreatedDate(product.getCreatedDate());;
+
+        /* set vm */
+        vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
+        vm.setCategoryVMList(categoryVMList);
+        vm.setBrandVMList(brandVMList);
+        vm.setUserVMList(userVMList);
+
+        model.addAttribute("vm",vm);
+        model.addAttribute("product", productVM);
+
+        return "/admin/product_detail";
     }
 
     @GetMapping("/product-image")

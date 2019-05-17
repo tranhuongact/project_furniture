@@ -32,6 +32,7 @@ $(document).ready(function() {
 
     $("#new-blog").on("click", function () {
         dataBlog = {};
+        $("#change-blog-image").val("");
         $('#input-title').val("");
         $('#input-username').val("");
         $("#input-short-desc").val("");
@@ -51,7 +52,8 @@ $(document).ready(function() {
                 $("#input-title").val(res.data.data.title);
                 $("#input-short-desc").val(res.data.data.shortDesc);
                 $("#input-username").val(res.data.data.userId);
-                $("#input-content").val(res.data.data.content);
+                // $("#input-content").val(res.data.data.content);
+                CKEDITOR.instances['input-content'].setData(res.data.data.content);
                 if(res.data.data.mainImage != null) {
                     $('.blog-main-image').attr('src', res.data.data.mainImage);
                 }
@@ -76,7 +78,7 @@ $(document).ready(function() {
 
         dataBlog.title = $('#input-title').val();
         dataBlog.shortDesc = $('#input-short-desc').val();
-        dataBlog.content = $('#input-content').val();
+        dataBlog.content = CKEDITOR.instances['input-content'].getData();
         dataBlog.userId = $("#input-username").val();
         dataBlog.mainImage = $('.blog-main-image').attr('src');
 

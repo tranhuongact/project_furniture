@@ -7,32 +7,19 @@ public class ProductVM {
     private int id;
     private String categoryName;
     private int categoryId;
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
+    private String userName;
+    private int userId;
     private String name;
     private String shortDesc;
     private String mainImage;
     private Double price;
     private String brandName;
+    private int brandId;
     private int amount;
     private Date createdDate;
     private int avgPoint;
+    private String description;
     private List<ProductImageVM> productImageVMS;
-
-    public int getAvgPoint() {
-        return avgPoint;
-    }
-
-    public void setAvgPoint(int avgPoint) {
-        this.avgPoint = avgPoint;
-    }
 
     public int getId() {
         return id;
@@ -48,6 +35,22 @@ public class ProductVM {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {
@@ -106,11 +109,43 @@ public class ProductVM {
         this.createdDate = createdDate;
     }
 
+    public int getAvgPoint() {
+        return avgPoint;
+    }
+
+    public void setAvgPoint(int avgPoint) {
+        this.avgPoint = avgPoint;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<ProductImageVM> getProductImageVMS() {
         return productImageVMS;
     }
 
     public void setProductImageVMS(List<ProductImageVM> productImageVMS) {
         this.productImageVMS = productImageVMS;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 }

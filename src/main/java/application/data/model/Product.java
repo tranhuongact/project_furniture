@@ -27,6 +27,16 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    @Column(name = "brand_id", insertable = false, updatable = false)
+    private Integer brandId;
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "user_id", insertable = false, updatable = false)
+    private Integer userId;
+
     @Column(name = "name")
     private String name;
 
@@ -39,11 +49,14 @@ public class Product {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "created_date")
-    private Date createdDate;
-
     @Column(name = "amount")
     private int amount;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "created_date")
+    private Date createdDate;
 
     public int getId() {
         return id;
@@ -131,5 +144,37 @@ public class Product {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

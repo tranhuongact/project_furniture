@@ -1,19 +1,20 @@
 package application.model.viewmodel.admin;
 
-import application.model.viewmodel.common.CategoryVM;
-import application.model.viewmodel.common.LayoutHeaderAdminVM;
-import application.model.viewmodel.common.ProductImageVM;
-import application.model.viewmodel.common.ProductVM;
+import application.data.model.Brand;
+import application.model.viewmodel.common.*;
+import application.model.viewmodel.user.UserVM;
 
 import java.util.List;
 
 public class AdminProductVM {
 
+    private LayoutHeaderAdminVM layoutHeaderAdminVM;
     private List<ProductVM> productVMList;
     private List<CategoryVM> categoryVMList;
     private List<ProductImageVM> productImageVMList;
+    private List<BrandVM> brandVMList;
+    private List<UserVM> userVMList;
     private String keyWord;
-    private LayoutHeaderAdminVM layoutHeaderAdminVM;
 
     public List<ProductVM> getProductVMList() {
         return productVMList;
@@ -53,5 +54,21 @@ public class AdminProductVM {
 
     public void setLayoutHeaderAdminVM(LayoutHeaderAdminVM layoutHeaderAdminVM) {
         this.layoutHeaderAdminVM = layoutHeaderAdminVM;
+    }
+
+    public List<BrandVM> getBrandVMList() {
+        return brandVMList;
+    }
+
+    public void setBrandVMList(List<BrandVM> brandVMList) {
+        this.brandVMList = brandVMList;
+    }
+
+    public List<UserVM> getUserVMList() {
+        return userVMList;
+    }
+
+    public void setUserVMList(List<UserVM> userVMList) {
+        this.userVMList = userVMList;
     }
 }

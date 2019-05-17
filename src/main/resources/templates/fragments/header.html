@@ -13,11 +13,11 @@
     <div class="container-menu-header">
         <div class="topbar">
             <div class="topbar-social">
-                <a href="#" class="topbar-social-item fa fa-facebook"></a>
-                <a href="#" class="topbar-social-item fa fa-instagram"></a>
-                <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-                <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-                <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+                <a href="https://www.facebook.com/" class="topbar-social-item fa fa-facebook"></a>
+                <a href="https://www.instagram.com/" class="topbar-social-item fa fa-instagram"></a>
+                <a href="https://www.pinterest.com/" class="topbar-social-item fa fa-pinterest-p"></a>
+                <a href="https://www.snapchat.com/" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                <a href="https://www.youtube.com/" class="topbar-social-item fa fa-youtube-play"></a>
             </div>
 
             <span class="topbar-child1">
@@ -26,7 +26,7 @@
 
             <div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						diemhuong10897@gmail.com
 					</span>
 
                 <span class="topbar-phone-number">
@@ -62,8 +62,7 @@
                         <div class="d-flex justify-content-center">
                             <form class="form-inline my-2 my-lg-0" th:action="@{/product}" th:object="${productname}" method="get">
                             <div class="searchbar">
-                                <input class="search_input" type="search" name="" th:field="*{name}" >
-                                <!--<a th:href="@{/product}" class="search_icon"><i class="fa fa-search"></i></a>-->
+                                <input class="search_input" type="search" name="" th:field="*{name}">
                                 <button class="search_icon"><i class="fa fa-search"></i></button>
                             </div>
                             </form>
@@ -110,101 +109,8 @@
                         </div>
                     </form>
                 </div>
+
                 <div th:replace="fragments/mini_cart :: mini_cart_info (vm=${vm.getCartVM()})"></div>
-                <!--<div class="header-wrapicon2">-->
-                    <!--<i class="fa fa-shopping-bag header-icon1 js-show-header-dropdown" aria-hidden="true"></i>-->
-                    <!--<span class="header-icons-noti">0</span>-->
-
-                    <!--&lt;!&ndash; Header cart noti &ndash;&gt;-->
-                    <!--<div class="header-cart header-dropdown">-->
-                        <!--<ul class="header-cart-wrapitem">-->
-                            <!--<th:block th:each="cartProduct : ${vm.getCartProductVMS()}">-->
-                            <!--<li class="header-cart-item">-->
-                                <!--<div class="header-cart-item-img">-->
-                                    <!--<img th:src="${cartProduct.getMainImage()}" alt="IMG">-->
-                                <!--</div>-->
-
-                                <!--<div class="header-cart-item-txt">-->
-                                    <!--<a href="#" class="header-cart-item-name" th:text="${cartProduct.getProductName()}">-->
-
-                                    <!--</a>-->
-
-                                    <!--<span class="header-cart-item-info" th:text="${cartProduct.getPricePerProduct()}+' đ'">-->
-
-										<!--</span>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                            <!--</th:block>-->
-                            <!--&lt;!&ndash;<li class="header-cart-item">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<div class="header-cart-item-img">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<img src="images/item-cart-01.jpg" alt="IMG">&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                <!--&lt;!&ndash;<div class="header-cart-item-txt">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<a href="#" class="header-cart-item-name">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;White Shirt With Pleat Detail Back&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-
-                                    <!--&lt;!&ndash;<span class="header-cart-item-info">&ndash;&gt;-->
-											<!--&lt;!&ndash;1 x $19.00&ndash;&gt;-->
-										<!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-
-                            <!--&lt;!&ndash;<li class="header-cart-item">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<div class="header-cart-item-img">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<img src="images/item-cart-02.jpg" alt="IMG">&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                <!--&lt;!&ndash;<div class="header-cart-item-txt">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<a href="#" class="header-cart-item-name">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;Converse All Star Hi Black Canvas&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-
-                                    <!--&lt;!&ndash;<span class="header-cart-item-info">&ndash;&gt;-->
-											<!--&lt;!&ndash;1 x $39.00&ndash;&gt;-->
-										<!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-
-                            <!--&lt;!&ndash;<li class="header-cart-item">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<div class="header-cart-item-img">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<img src="images/item-cart-03.jpg" alt="IMG">&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                <!--&lt;!&ndash;<div class="header-cart-item-txt">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<a href="#" class="header-cart-item-name">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;Nixon Porter Leather Watch In Tan&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-
-                                    <!--&lt;!&ndash;<span class="header-cart-item-info">&ndash;&gt;-->
-											<!--&lt;!&ndash;1 x $17.00&ndash;&gt;-->
-										<!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                        <!--</ul>-->
-
-                        <!--<div class="header-cart-total">-->
-                            <!--Total: $75.00-->
-                        <!--</div>-->
-
-                        <!--<div class="header-cart-buttons">-->
-                            <!--<div class="header-cart-wrapbtn">-->
-                                <!--&lt;!&ndash; Button &ndash;&gt;-->
-                                <!--<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
-                                    <!--View Cart-->
-                                <!--</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="header-cart-wrapbtn">-->
-                                <!--&lt;!&ndash; Button &ndash;&gt;-->
-                                <!--<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
-                                    <!--Check Out-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
 
             </div>
         </div>
@@ -213,7 +119,7 @@
     <!-- Header Mobile -->
     <div class="wrap_header_mobile">
         <!-- Logo moblie -->
-        <a href="index.html" class="logo-mobile">
+        <a th:href="@{/}" class="logo-mobile">
             <img th:src="@{/images/core-img/logo.png}" alt="IMG-LOGO">
         </a>
 
@@ -224,10 +130,12 @@
                 <div class="header-wrapicon1 mr-1">
                     <div class="container m-0">
                         <div class="d-flex justify-content-center">
-                            <div class="searchbar">
-                                <input class="search_input" type="text" name="" placeholder="Search...">
-                                <a th:href="@{/product}" class="search_icon"><i class="fa fa-search"></i></a>
-                            </div>
+                            <form class="form-inline my-2 my-lg-0" th:action="@{/product}" th:object="${productname}" method="get">
+                                <div class="searchbar">
+                                    <input class="search_input" type="search" name="" placeholder="Search..." th:field="*{name}">
+                                    <button class="search_icon"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -272,83 +180,7 @@
                     </form>
                 </div>
                 <div th:replace="fragments/mini_cart :: mini_cart_info (vm=${vm.getCartVM()})"></div>
-                <!--<div class="header-wrapicon2">-->
-                    <!--<i class="fa fa-shopping-bag header-icon1 js-show-header-dropdown" aria-hidden="true"></i>-->
-                    <!--<span class="header-icons-noti">0</span>-->
 
-                    <!--&lt;!&ndash; Header cart noti &ndash;&gt;-->
-                    <!--<div class="header-cart header-dropdown">-->
-                        <!--<ul class="header-cart-wrapitem">-->
-
-                            <!--<li class="header-cart-item">-->
-                                <!--<div class="header-cart-item-img">-->
-                                    <!--<img src="images/item-cart-01.jpg" alt="IMG">-->
-                                <!--</div>-->
-
-                                <!--<div class="header-cart-item-txt">-->
-                                    <!--<a href="#" class="header-cart-item-name" >-->
-                                        <!--Converse All Star Hi Black Canvas-->
-                                    <!--</a>-->
-
-                                    <!--<span class="header-cart-item-info">-->
-											<!--1 x $19.00-->
-										<!--</span>-->
-                                <!--</div>-->
-                            <!--</li>-->
-
-                            <!--<li class="header-cart-item">-->
-                                <!--<div class="header-cart-item-img">-->
-                                    <!--<img src="images/item-cart-02.jpg" alt="IMG">-->
-                                <!--</div>-->
-
-                                <!--<div class="header-cart-item-txt">-->
-                                    <!--<a href="#" class="header-cart-item-name">-->
-                                        <!--Converse All Star Hi Black Canvas-->
-                                    <!--</a>-->
-
-                                    <!--<span class="header-cart-item-info">-->
-											<!--1 x $39.00-->
-										<!--</span>-->
-                                <!--</div>-->
-                            <!--</li>-->
-
-                            <!--<li class="header-cart-item">-->
-                                <!--<div class="header-cart-item-img">-->
-                                    <!--<img src="images/item-cart-03.jpg" alt="IMG">-->
-                                <!--</div>-->
-
-                                <!--<div class="header-cart-item-txt">-->
-                                    <!--<a href="#" class="header-cart-item-name">-->
-                                        <!--Nixon Porter Leather Watch In Tan-->
-                                    <!--</a>-->
-
-                                    <!--<span class="header-cart-item-info">-->
-											<!--1 x $17.00-->
-										<!--</span>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-
-                        <!--<div class="header-cart-total" >-->
-                            <!--TOTAL : 100$-->
-                        <!--</div>-->
-
-                        <!--<div class="header-cart-buttons">-->
-                            <!--<div class="header-cart-wrapbtn">-->
-                                <!--&lt;!&ndash; Button &ndash;&gt;-->
-                                <!--<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
-                                    <!--View Cart-->
-                                <!--</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="header-cart-wrapbtn">-->
-                                <!--&lt;!&ndash; Button &ndash;&gt;-->
-                                <!--<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">-->
-                                    <!--Check Out-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
                 </div>
             </div>
 
@@ -373,7 +205,7 @@
                 <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
                     <div class="topbar-child2-mobile">
 							<span class="topbar-email">
-								fashe@example.com
+								diemhuong10897@gmail.com
 							</span>
 
                         <span class="topbar-phone-number">
@@ -384,11 +216,11 @@
 
                 <li class="item-topbar-mobile p-l-10">
                     <div class="topbar-social-mobile">
-                        <a href="#" class="topbar-social-item fa fa-facebook"></a>
-                        <a href="#" class="topbar-social-item fa fa-instagram"></a>
-                        <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-                        <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-                        <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+                        <a href="https://www.facebook.com/" class="topbar-social-item fa fa-facebook"></a>
+                        <a href="https://www.instagram.com/" class="topbar-social-item fa fa-instagram"></a>
+                        <a href="https://www.pinterest.com/" class="topbar-social-item fa fa-pinterest-p"></a>
+                        <a href="https://www.snapchat.com/" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                        <a href="https://www.youtube.com/" class="topbar-social-item fa fa-youtube-play"></a>
                     </div>
                 </li>
 

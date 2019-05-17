@@ -32,10 +32,15 @@ $(document).ready(function() {
 
     $("#new-product").on("click", function () {
         dataProduct = {};
+        $("#change-product-mainImage").val("");
         $('#input-product-name').val("");
-        $('#input-product-desc').val("");
         $("#input-product-category").val("");
+        $("#input-product-brand").val("");
+        $("#input-product-user").val("");
         $("#input-product-price").val("");
+        $("#input-product-amount").val("");
+        $("#input-product-shortDesc").val("");
+        $("#input-product-desc").val("");
         $('.product-main-image').attr('src', 'https://www.vietnamprintpack.com/images/default.jpg');
 
     });
@@ -50,9 +55,13 @@ $(document).ready(function() {
             if(res.data.success) {
                 dataProduct.id = res.data.data.id;
                 $("#input-product-name").val(res.data.data.name);
-                $("#input-product-desc").val(res.data.data.shortDesc);
                 $("#input-product-category").val(res.data.data.categoryId);
+                $("#input-product-brand").val(res.data.data.brandId);
+                $("#input-product-user").val(res.data.data.userId);
+                $("#input-product-amount").val(res.data.data.amount);
                 $("#input-product-price").val(res.data.data.price);
+                CKEDITOR.instances['input-product-shortDesc'].setData(res.data.data.shortDesc);
+                CKEDITOR.instances['input-product-desc'].setData(res.data.data.description);
                 if(res.data.data.mainImage != null) {
                     $('.product-main-image').attr('src', res.data.data.mainImage);
                 }
@@ -61,13 +70,15 @@ $(document).ready(function() {
             }
         }, function(err){
             NProgress.done();
-        })
+        });
     });
 
 
 
     $(".btn-save-product").on("click", function () {
-        if($("#input-product-name").val() === "" || $("#input-product-desc").val() === "" || $("#input-product-price").val()==="") {
+        if($("#input-product-name").val() === "" || $("#input-product-amount").val() === "" || $("#input-product-price").val()==="" ||
+            $("#input-product-category").val() == null || $("#input-product-brand").val() == null || $("#input-product-user").val() == null) {
+
             swal(
                 'Error',
                 'You need to fill all values',
@@ -77,10 +88,14 @@ $(document).ready(function() {
         }
 
         dataProduct.name = $('#input-product-name').val();
-        dataProduct.shortDesc = $('#input-product-desc').val();
         dataProduct.categoryId = $("#input-product-category").val();
+        dataProduct.brandId = $("#input-product-brand").val();
+        dataProduct.userId = $("#input-product-user").val();
         dataProduct.mainImage = $('.product-main-image').attr('src');
         dataProduct.price = $("#input-product-price").val();
+        dataProduct.amount = $("#input-product-amount").val();
+        dataProduct.shortDesc = CKEDITOR.instances['input-product-shortDesc'].getData();
+        dataProduct.description = CKEDITOR.instances['input-product-desc'].getData();
         NProgress.start();
         console.log(dataProduct.id);
         var linkPost = "/api/product/create";
@@ -112,7 +127,7 @@ $(document).ready(function() {
                 'Some error when saving product',
                 'error'
             );
-        })
+        });
     });
 
 
