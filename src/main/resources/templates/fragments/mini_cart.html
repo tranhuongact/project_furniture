@@ -25,7 +25,7 @@
 
                         </a>
 
-                        <span class="header-cart-item-info" th:text="${cartProduct.getAmount()}+'x'+' '+${cartProduct.getPricePerProduct()}+' đ'">
+                        <span class="header-cart-item-info" th:text="${cartProduct.getAmount()}+'x'+' '+'$'+${cartProduct.getPricePerProduct()}">
 
 										</span>
                     </div>
@@ -34,7 +34,7 @@
 
         </ul>
 
-        <div class="header-cart-total" th:text="'TOTAL:   ' + ${vm.getTotalPrice()}+' đ'">
+        <div class="header-cart-total" th:text="'TOTAL:   '+'$' + ${vm.getTotalPrice()}">
 
         </div>
 

@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -443,33 +444,49 @@ public class AdminController extends BaseController{
 
         AdminOrderVM vm = new AdminOrderVM();
 
-        List<OrderProduct> orderProductList = orderProductService.getListAllOrderProducts();
-        List<OrderHistoryVM> orderHistoryVMList = new ArrayList<>();
-
 //        List<OrderProduct> orderProductList = orderProductService.getListAllOrderProducts();
-        List<OrderProductVM> orderProductVMList = new ArrayList<>();
-
-        for(OrderProduct orderProduct : orderProductList){
-            OrderProductVM orderProductVM = new OrderProductVM();
-            orderProductVM.setProductId(orderProduct.getProductId());
-            orderProductVM.setOrderId(orderProduct.getOrderId());
-            orderProductVM.setProductName(orderProduct.getProduct().getName());
-            if(orderProduct.getOrder() == null){
-                orderProductVM.setCustomerName("Unknown");
-            } else {
-                orderProductVM.setCustomerName(orderProduct.getOrder().getCustomerName());
-            }
-            orderProductVM.setAmount(orderProduct.getAmount());
-            orderProductVM.setPrice(String.valueOf(orderProduct.getPrice()));
-            orderProductVM.setCreatedDate(orderProduct.getOrder().getCreatedDate());
-
-            orderProductVMList.add(orderProductVM);
+//        List<OrderHistoryVM> orderHistoryVMList = new ArrayList<>();
+//
+//
+//        List<OrderProductVM> orderProductVMList = new ArrayList<>();
+//
+//        for(OrderProduct orderProduct : orderProductList){
+//            OrderProductVM orderProductVM = new OrderProductVM();
+//            orderProductVM.setProductId(orderProduct.getProductId());
+//            orderProductVM.setOrderId(orderProduct.getOrderId());
+//            orderProductVM.setProductName(orderProduct.getProduct().getName());
+//            if(orderProduct.getOrder() == null){
+//                orderProductVM.setCustomerName("Unknown");
+//            } else {
+//                orderProductVM.setCustomerName(orderProduct.getOrder().getCustomerName());
+//            }
+//
+//            orderProductVM.setAmount(orderProduct.getAmount());
+//            orderProductVM.setPrice(String.valueOf(orderProduct.getPrice()));
+//            orderProductVM.setCreatedDate(orderProduct.getOrder().getCreatedDate());
+//
+//            orderProductVMList.add(orderProductVM);
+//        }
+//
+//        vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
+//        vm.setOrderProductVMList(orderProductVMList);
+        DecimalFormat df = new DecimalFormat("####0.00");
+        List<Order> orderList = orderService.getListAllOrders();
+        List<OrderVM> orderVMList = new ArrayList<>();
+        for(Order order : orderList){
+            OrderVM orderVM = new OrderVM();
+            orderVM.setCustomerName(order.getCustomerName());
+            orderVM.setEmail(order.getEmail());
+            orderVM.setAddress(order.getAddress());
+            orderVM.setPhoneNumber(order.getPhoneNumber());
+            orderVM.setPrice(df.format(order.getPrice()));
+            orderVM.setCreatedDate(order.getCreatedDate());
+            orderVM.setId(order.getId());
+            orderVMList.add(orderVM);
         }
 
         vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
-        vm.setOrderProductVMList(orderProductVMList);
-//        vm.setOrderVMList(orderVMList);
-
+        vm.setOrderVMList(orderVMList);
         model.addAttribute("vm", vm);
 
         return "/admin/order";

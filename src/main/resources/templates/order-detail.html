@@ -57,7 +57,7 @@
                 <td colspan="1" th:text="${iter.index+1}" ></td>
                 <td colspan="4">
                     <a>
-                        <img style="width: auto; max-height: 250px;" th:src="${orderProduct.getMainImage()}">
+                        <img style="width: 145px; height: 145px;" th:src="${orderProduct.getMainImage()}">
                     </a>
                 </td>
                 <td colspan="3"><a th:text="${orderProduct.getName()}" th:src="@{'../../product/'+${orderProduct.getProductId()}}"></a>

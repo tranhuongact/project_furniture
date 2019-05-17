@@ -65,7 +65,7 @@
                 <td colspan="2" th:text="${order.getEmail()}"></td>
                 <td colspan="2" th:text="${order.getAddress()}"></td>
                 <td colspan="2" th:text="${order.getPhoneNumber()}"></td>
-                <td colspan="1" th:text="${order.getPrice()}"></td>
+                <td colspan="1" th:text="'$' + ${order.getPrice()}"></td>
                 <td colspan="1" th:text="${order.getCreatedDate()}"></td>
                 <td colspan="1">
                     <a class="btn btn-primary" th:href="@{'/order/history/'+${order.getId()}}" role="button">Detail</a>
@@ -91,6 +91,11 @@
 <script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
 <!--===============================================================================================-->
 <script th:src="@{/js/order-history.js}"></script>
+<!--<script type="text/javascript" th:src="@{/vendors/bootstrap/js/popper.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>-->
+<!--===============================================================================================-->
+<script th:src="@{/js/main.js}"></script>
+
 
 </body>
 </html>

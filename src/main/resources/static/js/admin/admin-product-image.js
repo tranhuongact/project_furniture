@@ -103,7 +103,7 @@ $(document).ready(function() {
                 'Some error when saving product-image',
                 'error'
             );
-        })
+        });
     });
 
     $(".delete-product-image").on("click", function () {
@@ -136,7 +136,7 @@ $(document).ready(function() {
                 'Some error when delete product-image',
                 'error'
             );
-        })
-    })
+        });
+    });
 
 });

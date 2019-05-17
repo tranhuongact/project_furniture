@@ -63,9 +63,9 @@ public class HomeController extends BaseController {
          * set list bannerVM
          */
         ArrayList<BannerVM> listBanners = new ArrayList<>();
-        listBanners.add(new BannerVM("", "","/images/slider/slider1.jpg"));
-        listBanners.add(new BannerVM("", "","/images/slider/slider2.jpg"));
-        listBanners.add(new BannerVM("", "","/images/slider/slider3.jpg"));
+        listBanners.add(new BannerVM("", "Luxurious","/images/slider/slider1.jpg"));
+        listBanners.add(new BannerVM("", "Modern","/images/slider/slider2.jpg"));
+        listBanners.add(new BannerVM("", "Enduring","/images/slider/slider3.jpg"));
 
         /**
          * set list categoryVM

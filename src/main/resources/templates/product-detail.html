@@ -114,7 +114,7 @@
                 </th:block>
 
             </div>
-            <span class="m-text17" th:text="${vm.getProductVM().getPrice()}+' đ'">
+            <span class="m-text17" th:text="'$'+${vm.getProductVM().getPrice()}">
 
 				</span>
 
@@ -129,7 +129,7 @@
 
                 <div class="flex-r-m flex-w p-t-10">
                     <div class="flex-m flex-w " style="margin-right: 10%" >
-                        <p style="font-size: 100%">Số lượng:   </p>
+                        <p style="font-size: 100%">Amount:   </p>
                     </div>
                     <div class="flex-w flex-m">
 
@@ -400,7 +400,7 @@
                             </a>
 
                             <!--<span class="block2-price m-text17 p-r-5" th:text="${item.getPrice()}+' đ'"></span>-->
-                            <span class="m-text17" th:text="${item.getPrice()}+' đ'">
+                            <span class="m-text17" th:text="'$'+${item.getPrice()}">
 
 				            </span>
 
