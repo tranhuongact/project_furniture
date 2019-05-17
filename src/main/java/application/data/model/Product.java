@@ -23,6 +23,9 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<ProductImage> productImageList = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<OrderProduct> orderProductList = new ArrayList<>();
+
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     private Brand brand;

@@ -65,7 +65,7 @@ public class ContactController extends BaseController{
             vm.setLayoutHeaderVM(this.getLayoutHeaderVM(response, request, principal));
             model.addAttribute("vm", vm);
 
-            return "redirect:/contact";
+            return "redirect:/contact?sendSuccess";
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

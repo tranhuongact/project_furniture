@@ -23,11 +23,11 @@ public interface CategoryRepository extends JpaRepository<Category,Integer> {
             "ORDER BY c.name ASC")
     List<ChartLabelDataVM> countProductByCategory();
 
-//    @Query("SELECT new application.model.viewmodel.common.ChartLabelDataVM(c.name, sum(op.amount)) "+
-//            "FROM dbo_category c INNER JOIN c.listProducts p "+
-//            "INNER JOIN p.orderProductList op "+
-//            "GROUP BY c.id "+
-//            "ORDER BY c.name ASC")
-//    List<ChartLabelDataVM> sumProductOrderByCategory();
+    @Query("SELECT new application.model.viewmodel.common.ChartLabelDataVM(c.name, sum(op.amount)) "+
+            "FROM dbo_category c INNER JOIN c.listProducts p "+
+            "INNER JOIN p.orderProductList op "+
+            "GROUP BY c.id "+
+            "ORDER BY c.name ASC")
+    List<ChartLabelDataVM> sumProductOrderByCategory();
 
 }

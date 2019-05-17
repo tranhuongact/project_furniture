@@ -19,6 +19,12 @@
     <!-- DataTable -->
     <link th:href="@{/vendors/datatable/dataTables.bootstrap4.css}" rel="stylesheet">
     <link th:href="@{/build/css/custom.css}" rel="stylesheet">
+    <style>
+        .img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -116,7 +122,7 @@
                             <tr scope="row" th:each="productImage,iterStat : ${vm.getProductImageVMList()}">
                                 <td th:text="${iterStat.count}" class="text-center"></td>
                                 <td class="text-center">
-                                    <img th:src="${productImage.getLink()}" alt="">
+                                    <img th:src="${productImage.getLink()}" alt="" class="img">
                                 </td>
                                 <td th:text="${productImage.getProductName()}"></td>
                                 <td th:text="${productImage.getLink()}"></td>

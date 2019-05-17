@@ -72,8 +72,8 @@ public class CategoryService {
         return categoryRepository.countProductByCategory();
     }
 
-//    public List<ChartLabelDataVM> sumProductOrderByCategory(){
-//        return categoryRepository.sumProductOrderByCategory();
-//    }
+    public List<ChartLabelDataVM> sumProductOrderByCategory(){
+        return categoryRepository.sumProductOrderByCategory();
+    }
 
 }

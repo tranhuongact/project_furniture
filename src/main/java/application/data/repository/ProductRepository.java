@@ -25,7 +25,8 @@ public interface ProductRepository extends JpaRepository <Product, Integer> {
 
     @Query("SELECT p FROM dbo_product p " +
             "WHERE p.price BETWEEN (:priceLower) AND (:priceUpper)")
-    Page<Product> getListProductByPrice(Pageable pageable, @Param("priceLower") Integer priceLower, @Param("priceUpper") Integer priceUpper);
+    Page<Product> getListProductByPrice(Pageable pageable, @Param("priceLower") Double priceLower, @Param("priceUpper") Double priceUpper);
+
     @Query("select p from dbo_product p where p.categoryId = :categoryId")
     List<Product> getListProductByCategory(@Param("categoryId") Integer categoryId);
 }

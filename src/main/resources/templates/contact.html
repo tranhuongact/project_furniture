@@ -61,7 +61,11 @@
                     <h4 class="m-text26 p-b-36">
                         Send us your message
                     </h4>
-
+                    <div th:if="${param.sendSuccess}">
+                        <div class="alert alert-success">
+                            Send success !!
+                        </div>
+                    </div>
                     <div th:if="${param.sendFail}">
                         <div class="alert alert-danger">
                             Send fail !!

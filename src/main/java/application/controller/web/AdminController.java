@@ -65,13 +65,13 @@ public class AdminController extends BaseController{
         HomeAdminVM vm = new HomeAdminVM();
 
         List<ChartLabelDataVM> countProductByCategory = categoryService.countProductByCategory();
-//        List<ChartLabelDataVM> sumProductOrderByCategory = categoryService.sumProductOrderByCategory();
+        List<ChartLabelDataVM> sumProductOrderByCategory = categoryService.sumProductOrderByCategory();
 
         ChartVM chartVM = new ChartVM();
         chartVM.setLabelDataList(countProductByCategory);
 
-//        ChartVM chartVM1 = new ChartVM();
-//        chartVM1.setLabelDataList(sumProductOrderByCategory);
+        ChartVM chartVM1 = new ChartVM();
+        chartVM1.setLabelDataList(sumProductOrderByCategory);
 
         String  username = SecurityContextHolder.getContext().getAuthentication().getName();
         User userEntity = userService.findUserByUsername(username);
@@ -85,7 +85,7 @@ public class AdminController extends BaseController{
         }
 
         vm.setCountProductByCategory(chartVM);
-//        vm.setSumProductOrderByCategory(chartVM1);
+        vm.setSumProductOrderByCategory(chartVM1);
         vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
 
         model.addAttribute("vm",vm);

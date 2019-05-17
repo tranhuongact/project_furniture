@@ -53,7 +53,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="orderProduct,iterStat : ${vm.getOrderProductVMS()}">
+            <tr th:each="orderProduct,iter : ${vm.getOrderProductVMS()}">
                 <td colspan="1" th:text="${iter.index+1}" ></td>
                 <td colspan="4">
                     <a>

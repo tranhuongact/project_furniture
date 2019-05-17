@@ -110,7 +110,6 @@
                             <th scope="col">Title</th>
                             <th scope="col">Author</th>
                             <th scope="col">Short Desc</th>
-                            <th scope="col">Content</th>
                             <th scope="col">Created Date</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -121,7 +120,6 @@
                             <td th:text="${blog.getTitle()}"></td>
                             <td th:text="${blog.getUserName()}"></td>
                             <td th:text="${blog.getShortDesc()}"></td>
-                            <td th:text="${blog.getContent()}"></td>
                             <td th:text="${blog.getCreatedDate()}"></td>
                             <td class="text-center">
                                 <i class="fa fa-edit tooltip-test edit-blog" th:attr="data-blog = ${blog.getId()}" data-toggle="modal" title="Edit blog" data-target="#exampleModalLong" style="cursor: pointer"></i>
