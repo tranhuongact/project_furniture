@@ -15,17 +15,7 @@ $(document).ready(function() {
 
     $("#change-product-image").change(function() {
         readURL(this);
-        var formData = new FormData();
-        NProgress.start();
-        formData.append('file', $("#change-product-image")[0].files[0]);
-        axios.post("/api/upload/upload-image", formData).then(function(res){
-            NProgress.done();
-            if(res.data.success) {
-                $('.product-image').attr('src', res.data.link);
-            }
-        }, function(err){
-            NProgress.done();
-        });
+
     });
 
 
@@ -70,40 +60,51 @@ $(document).ready(function() {
             return;
         }
 
-        dataProductImage.productId = $("#input-product").val();
-        dataProductImage.link = $('.product-image').attr('src');
+        var formData = new FormData();
         NProgress.start();
-        console.log(dataProductImage.id);
-        var linkPost = "/api/product-image/create";
-        if(dataProductImage.id) {
-            linkPost = "/api/product-image/update/" + dataProductImage.id;
-        }
-
-        axios.post(linkPost, dataProductImage).then(function(res){
+        formData.append('file', $("#change-product-image")[0].files[0]);
+        axios.post("/api/upload/upload-image", formData).then(function(res){
             NProgress.done();
             if(res.data.success) {
-                swal(
-                    'Good job!',
-                    res.data.message,
-                    'success'
-                ).then(function() {
-                    location.reload();
+                dataProductImage.productId = $("#input-product").val();
+                dataProductImage.link = res.data.link;
+                NProgress.start();
+                console.log(dataProductImage.id);
+                var linkPost = "/api/product-image/create";
+                if(dataProductImage.id) {
+                    linkPost = "/api/product-image/update/" + dataProductImage.id;
+                }
+
+                axios.post(linkPost, dataProductImage).then(function(res){
+                    NProgress.done();
+                    if(res.data.success) {
+                        swal(
+                            'Good job!',
+                            res.data.message,
+                            'success'
+                        ).then(function() {
+                            location.reload();
+                        });
+                    } else {
+                        swal(
+                            'Error',
+                            res.data.message,
+                            'error'
+                        );
+                    }
+                }, function(err){
+                    NProgress.done();
+                    swal(
+                        'Error',
+                        'Some error when saving product-image',
+                        'error'
+                    );
                 });
-            } else {
-                swal(
-                    'Error',
-                    res.data.message,
-                    'error'
-                );
             }
         }, function(err){
             NProgress.done();
-            swal(
-                'Error',
-                'Some error when saving product-image',
-                'error'
-            );
         });
+
     });
 
     $(".delete-product-image").on("click", function () {

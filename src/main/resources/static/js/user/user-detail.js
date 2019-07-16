@@ -15,7 +15,7 @@ $(document).ready(function() {
     })
 
     $("#myForm").submit(function (e) {
-        // click change ảnh => ảnh change => click submit => lưu ảnh lên server => trả về link ảnh => gán link vài input avatar
+        // click change ảnh => ảnh change => click submit => lưu ảnh lên server => trả về link ảnh => gán link vào input avatar
         e.preventDefault();
         var formData = new FormData();
         NProgress.start();

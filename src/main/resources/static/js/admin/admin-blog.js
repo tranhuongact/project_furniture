@@ -15,17 +15,7 @@ $(document).ready(function() {
 
     $("#change-blog-image").change(function() {
         readURL(this);
-        var formData = new FormData();
-        NProgress.start();
-        formData.append('file', $("#change-blog-image")[0].files[0]);
-        axios.post("/api/upload/upload-image", formData).then(function(res){
-            NProgress.done();
-            if(res.data.success) {
-                $('.blog-main-image').attr('src', res.data.link);
-            }
-        }, function(err){
-            NProgress.done();
-        });
+
     });
 
 
@@ -76,56 +66,65 @@ $(document).ready(function() {
             return;
         }
 
-        dataBlog.title = $('#input-title').val();
-        dataBlog.shortDesc = $('#input-short-desc').val();
-        dataBlog.content = CKEDITOR.instances['input-content'].getData();
-        dataBlog.userId = $("#input-username").val();
-        dataBlog.mainImage = $('.blog-main-image').attr('src');
-
-        var slug = function(str) {
-            var $slug = '';
-            var trimmed = $.trim(str);
-            $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
-            replace(/-+/g, '-').
-            replace(/^-|-$/g, '');
-            return $slug.toLowerCase();
-        }
-        dataBlog.slug = slug($('#input-title').val());
-
+        var formData = new FormData();
         NProgress.start();
-        console.log(dataBlog.id);
-        var linkPost = "/api/blog/create";
-        if(dataBlog.id) {
-            linkPost = "/api/blog/update/" + dataBlog.id;
-        }
-
-        axios.post(linkPost, dataBlog).then(function(res){
+        formData.append('file', $("#change-blog-image")[0].files[0]);
+        axios.post("/api/upload/upload-image", formData).then(function(res){
             NProgress.done();
             if(res.data.success) {
-                swal(
-                    'Good job!',
-                    res.data.message,
-                    'success'
-                ).then(function() {
-                    location.reload();
+                dataBlog.title = $('#input-title').val();
+                dataBlog.shortDesc = $('#input-short-desc').val();
+                dataBlog.content = CKEDITOR.instances['input-content'].getData();
+                dataBlog.userId = $("#input-username").val();
+                dataBlog.mainImage = res.data.link;
+
+                var slug = function(str) {
+                    var $slug = '';
+                    var trimmed = $.trim(str);
+                    $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
+                    replace(/-+/g, '-').
+                    replace(/^-|-$/g, '');
+                    return $slug.toLowerCase();
+                }
+                dataBlog.slug = slug($('#input-title').val());
+
+                NProgress.start();
+                console.log(dataBlog.id);
+                var linkPost = "/api/blog/create";
+                if(dataBlog.id) {
+                    linkPost = "/api/blog/update/" + dataBlog.id;
+                }
+
+                axios.post(linkPost, dataBlog).then(function(res){
+                    NProgress.done();
+                    if(res.data.success) {
+                        swal(
+                            'Good job!',
+                            res.data.message,
+                            'success'
+                        ).then(function() {
+                            location.reload();
+                        });
+                    } else {
+                        swal(
+                            'Error',
+                            res.data.message,
+                            'error'
+                        );
+                    }
+                }, function(err){
+                    NProgress.done();
+                    swal(
+                        'Error',
+                        'Some error when saving blog',
+                        'error'
+                    );
                 });
-            } else {
-                swal(
-                    'Error',
-                    res.data.message,
-                    'error'
-                );
             }
         }, function(err){
             NProgress.done();
-            swal(
-                'Error',
-                'Some error when saving blog',
-                'error'
-            );
         });
+
     });
-
-
 
 });

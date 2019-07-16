@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -398,7 +399,7 @@ public class AdminController extends BaseController{
             blogVM.setShortDesc(blog.getShortDesc());
             blogVM.setMainImage(blog.getMainImage());
             blogVM.setContent(blog.getContent());
-            blogVM.setCreatedDate(blog.getCreatedDate());
+//            blogVM.setCreatedDate(blog.getCreatedDate());
 
             blogVMList.add(blogVM);
         }
@@ -444,32 +445,6 @@ public class AdminController extends BaseController{
 
         AdminOrderVM vm = new AdminOrderVM();
 
-//        List<OrderProduct> orderProductList = orderProductService.getListAllOrderProducts();
-//        List<OrderHistoryVM> orderHistoryVMList = new ArrayList<>();
-//
-//
-//        List<OrderProductVM> orderProductVMList = new ArrayList<>();
-//
-//        for(OrderProduct orderProduct : orderProductList){
-//            OrderProductVM orderProductVM = new OrderProductVM();
-//            orderProductVM.setProductId(orderProduct.getProductId());
-//            orderProductVM.setOrderId(orderProduct.getOrderId());
-//            orderProductVM.setProductName(orderProduct.getProduct().getName());
-//            if(orderProduct.getOrder() == null){
-//                orderProductVM.setCustomerName("Unknown");
-//            } else {
-//                orderProductVM.setCustomerName(orderProduct.getOrder().getCustomerName());
-//            }
-//
-//            orderProductVM.setAmount(orderProduct.getAmount());
-//            orderProductVM.setPrice(String.valueOf(orderProduct.getPrice()));
-//            orderProductVM.setCreatedDate(orderProduct.getOrder().getCreatedDate());
-//
-//            orderProductVMList.add(orderProductVM);
-//        }
-//
-//        vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
-//        vm.setOrderProductVMList(orderProductVMList);
         DecimalFormat df = new DecimalFormat("####0.00");
         List<Order> orderList = orderService.getListAllOrders();
         List<OrderVM> orderVMList = new ArrayList<>();
@@ -487,9 +462,48 @@ public class AdminController extends BaseController{
 
         vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
         vm.setOrderVMList(orderVMList);
+
         model.addAttribute("vm", vm);
 
         return "/admin/order";
+    }
+
+    @GetMapping("/order/detail/{orderId}")
+    public String orderDetail (Model model,
+                               @PathVariable int orderId){
+
+        AdminOrderVM vm = new AdminOrderVM();
+        DecimalFormat df = new DecimalFormat("####0.00");
+
+        Order order = orderService.findOne(orderId);
+        if(order.getCustomerName() == null){
+            order.setCustomerName("Unknown");
+        } else {
+            order.setCustomerName(order.getCustomerName());
+        }
+
+        List<OrderProduct> orderProductList = orderProductService.getListAllProductsByOrderContaining(orderId);
+        List<OrderProductVM> orderProductVMList = new ArrayList<>();
+
+        for(OrderProduct orderProduct : orderProductList){
+            OrderProductVM orderProductVM = new OrderProductVM();
+            orderProductVM.setProductId(orderProduct.getProductId());
+            orderProductVM.setOrderId(orderId);
+            orderProductVM.setProductName(orderProduct.getProduct().getName());
+            orderProductVM.setAmount(orderProduct.getAmount());
+            orderProductVM.setPrice(df.format(orderProduct.getPrice()));
+            orderProductVM.setCreatedDate(orderProduct.getOrder().getCreatedDate());
+
+            orderProductVMList.add(orderProductVM);
+        }
+
+        vm.setLayoutHeaderAdminVM(this.getLayoutHeaderAdminVM());
+        vm.setOrderProductVMList(orderProductVMList);
+
+        model.addAttribute("vm", vm);
+        model.addAttribute("order", order);
+
+        return "admin/order_detail";
     }
 
     @GetMapping("/contact")
@@ -518,5 +532,17 @@ public class AdminController extends BaseController{
         model.addAttribute("vm", vm);
 
         return "/admin/contact";
+    }
+
+    /* bao cao thong ke doanh thu */
+    @GetMapping("/statistic")
+    public String statistics(Model model){
+
+        AdminOrderVM vm = new AdminOrderVM();
+        DecimalFormat df = new DecimalFormat("####0.00");
+
+
+
+        return "admin/statistic";
     }
 }

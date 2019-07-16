@@ -24,4 +24,7 @@ public interface BlogRepository extends JpaRepository <Blog, Integer> {
             "WHERE (:slug IS NULL OR (p.slug = :slug))")
     Blog getBlogDetailBySlug(@Param("slug") String slug);
 
+    @Query(value = "SELECT * FROM dbo_post p ORDER BY p.created_date DESC LIMIT 3", nativeQuery = true)
+    List<Blog> getListNewBlog();
+
 }

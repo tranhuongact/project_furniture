@@ -10,7 +10,7 @@ public class BlogVM {
     private String mainImage;
     private String userName;
     private String content;
-    private Date createdDate;
+    private String createdDate;
 
     public int getId() {
         return id;
@@ -68,11 +68,11 @@ public class BlogVM {
         this.content = content;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 }

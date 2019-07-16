@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,13 +84,13 @@ public class HomeController extends BaseController {
             categoryVMList.add(categoryVM);
         }
 
-        List<Blog> blogList = blogService.getListAllBlogs();
+        List<Blog> blogList = blogService.getListNewBlog();
         List<BlogVM> blogVMList = new ArrayList<>();
 
         for (Blog blog : blogList){
             BlogVM blogVM = new BlogVM();
             if (blog.getUser() == null) {
-                blogVM.setUserName("Unknown");
+                blogVM.setUserName("Incognito");
             } else {
                 blogVM.setUserName(blog.getUser().getName());
             }
@@ -97,13 +98,15 @@ public class HomeController extends BaseController {
             blogVM.setSlug(blog.getSlug());
             blogVM.setMainImage(blog.getMainImage());
             blogVM.setShortDesc(blog.getShortDesc());
-            blogVM.setCreatedDate(blog.getCreatedDate());
+            String dateToStr = DateFormat.getDateInstance().format(blog.getCreatedDate());
+            blogVM.setCreatedDate(dateToStr);
+
 
             blogVMList.add(blogVM);
         }
 
         //set list feature product
-        List<OrderProduct> orderProductList = orderProductService.findTopFeatureProductByAmount();
+        List<OrderProduct> orderProductList = orderProductService.getListFeaturedProductByAmount();
         List<ProductVM> productVMList = new ArrayList<>();
         for(OrderProduct orderProduct : orderProductList){
             ProductVM productVM = new ProductVM();
@@ -117,9 +120,10 @@ public class HomeController extends BaseController {
         /**
          * set vm
          */
-        vm.setProductVMList(productVMList);
         vm.setListBanners(listBanners);
         vm.setCategoryVMList(categoryVMList);
+        vm.setProductVMList(productVMList);
+        vm.setBlogVMList(blogVMList);
         vm.setLayoutHeaderVM(this.getLayoutHeaderVM(response, request, principal));
 
         model.addAttribute("vm",vm);
@@ -131,8 +135,8 @@ public class HomeController extends BaseController {
     public String home(Model model,
                        @Valid @ModelAttribute("productname") ProductVM productName,
                        @RequestParam(name = "categoryId", required = false) Integer categoryId,
-//                       @RequestParam(name = "priceLower", required = false) Integer priceLower,
-//                       @RequestParam(name = "priceUpper", required = false) Integer priceUpper,
+//                       @RequestParam(name = "priceLower", required = false) Double priceLower,
+//                       @RequestParam(name = "priceUpper", required = false) Double priceUpper,
                        @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
                        @RequestParam(name = "size", required = false, defaultValue = "12") Integer size,
                        @RequestParam(name = "sortByPrice", required = false) String sort,

@@ -30,9 +30,11 @@ public class OrderProductService {
         }
     }
 
-    public List<OrderProduct> findTopFeatureProductByAmount(){
-        return orderProductRepository.findTopFeatureProductByAmount();
-
+    public List<OrderProduct> getListAllProductsByOrderContaining (int orderId) {
+        return orderProductRepository.getListAllProductsByOrderContaining(orderId);
     }
 
+    public List<OrderProduct> getListFeaturedProductByAmount(){
+        return orderProductRepository.getListFeaturedProductByAmount();
+    }
 }

@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,8 @@ public class BlogController extends BaseController{
             blogVM.setSlug(blog.getSlug());
             blogVM.setMainImage(blog.getMainImage());
             blogVM.setShortDesc(blog.getShortDesc());
-            blogVM.setCreatedDate(blog.getCreatedDate());
+            String dateToStr = DateFormat.getDateInstance().format(blog.getCreatedDate());
+            blogVM.setCreatedDate(dateToStr);
 
             blogVMList.add(blogVM);
         }
@@ -176,7 +178,9 @@ public class BlogController extends BaseController{
         blogVM.setMainImage(blog.getMainImage());
         blogVM.setShortDesc(blog.getShortDesc());
         blogVM.setContent(blog.getContent());
-        blogVM.setCreatedDate(blog.getCreatedDate());
+        String dateToStr = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
+                DateFormat.SHORT).format(blog.getCreatedDate());
+        blogVM.setCreatedDate(dateToStr);
 
         vm.setLayoutHeaderVM(this.getLayoutHeaderVM(response, request, principal));
         vm.setCategoryVMList(categoryVMList);

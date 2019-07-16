@@ -74,7 +74,7 @@ public class ProductService {
         return productRepository.getListProductByCategoryOrProductNameContaining(pageable,categoryId,productName);
     }
 
-    public Page<Product> getListProductByPrice(Pageable pageable, Integer priceLower, Integer priceUpper){
+    public Page<Product> getListProductByPrice(Pageable pageable, Double priceLower, Double priceUpper){
         return productRepository.getListProductByPrice(pageable,priceLower,priceUpper);
     }
 

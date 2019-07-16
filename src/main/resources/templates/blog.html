@@ -53,6 +53,10 @@
 					<div class="item-blog p-b-80">
 						<a th:href="${'/blog/' + blog.getSlug()}" class="item-blog-img pos-relative dis-block hov-img-zoom">
 							<img th:src="${blog.getMainImage()}" alt="IMG-BLOG" class="blog-image">
+
+							<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1" th:text="${blog.getCreatedDate()}">
+
+							</span>
 						</a>
 
 						<div class="item-blog-txt p-t-33">
@@ -62,10 +66,10 @@
 								</a>
 							</h4>
 
-							<!--<div class="s-text8 flex-w flex-m p-b-21">-->
-							<!--<span th:text="blog.getUserName()">-->
-							<!--<span class="m-l-3 m-r-6">|</span>-->
-							<!--</span>-->
+							<div class="s-text8 flex-w flex-m p-b-21">
+								<span>
+									By <span th:text="${blog.getUserName()}"></span>
+								</span>
 
 							<!--<span>-->
 							<!--Cooking, Food-->
@@ -75,7 +79,7 @@
 							<!--<span>-->
 							<!--8 Comments-->
 							<!--</span>-->
-							<!--</div>-->
+							</div>
 
 							<p class="p-b-12" th:text="${blog.getShortDesc()}">
 

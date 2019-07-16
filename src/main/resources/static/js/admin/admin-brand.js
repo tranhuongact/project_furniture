@@ -28,11 +28,11 @@ $(document).ready(function() {
             }
         }, function(err){
             NProgress.done();
-        })
+        });
     });
 
     $(".btn-save-brand").on("click", function () {
-        if($("#input-name").val() === "" || $("#input-phone-number").val() === "" || $('#input-email').val() || $('#input-address').val()) {
+        if($("#input-name").val() === "" || $("#input-phone-number").val() === "" || $('#input-email').val() === ""|| $('#input-address').val() === "") {
             swal(
                 'Error',
                 'You need to fill all values',

@@ -83,4 +83,7 @@ public class BlogService {
         return blogRepository.getBlogDetailBySlug(slug);
     }
 
+    public List<Blog> getListNewBlog(){
+        return blogRepository.getListNewBlog();
+    }
 }

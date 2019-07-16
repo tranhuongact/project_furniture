@@ -9,7 +9,18 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface OrderProductRepository extends JpaRepository<OrderProduct,Integer> {
-    @Query(value = "SELECT  DISTINCT * FROM dbo_order_product op where op.amount > 5" +
-            " GROUP by op.product_id ORDER BY  op.amount ",nativeQuery = true)
-    List<OrderProduct> findTopFeatureProductByAmount();
+
+    @Query("SELECT op FROM dbo_order_product op "+
+            "WHERE (:orderId IS NULL OR (op.orderId = :orderId))")
+    List<OrderProduct> getListAllProductsByOrderContaining (@Param("orderId") int orderId);
+
+    @Query(value = "SELECT * FROM dbo_order_product op " +
+            "GROUP BY op.product_id ORDER BY op.amount DESC, op.price DESC " +
+            "LIMIT 10", nativeQuery = true)
+    List<OrderProduct> getListFeaturedProductByAmount();
+
+//    @Query(value = "SELECT order_product_id, product_id, sum(amount) as sum_amount, sum(price) as sum_price " +
+//                    "FROM dbo_order_product op " +
+//                    "GROUP BY op.product_id", nativeQuery = true);
+//    List<OrderProduct> getListProductsSold();
 }
